@@ -1,0 +1,144 @@
+@use 'styles/variables' as *;
+@use 'styles/mixins' as *;
+
+.footer {
+  background: $brand-dark;
+  color: $text-on-dark;
+  padding-top: $space-16;
+
+  &__inner {
+    display: grid;
+    gap: $space-10;
+    grid-template-columns: 1fr;
+
+    @include respond-to(md) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include respond-to(xl) {
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: $space-8;
+    }
+  }
+
+  // Brand column
+  &__brand {
+    @include respond-to(xl) { padding-right: $space-8; }
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: $space-2;
+    text-decoration: none;
+    margin-bottom: $space-4;
+
+    .logo-mark {
+      font-size: $text-2xl;
+      font-weight: $weight-extrabold;
+      color: $brand-accent;
+      letter-spacing: -0.04em;
+    }
+
+    .logo-text {
+      font-size: $text-base;
+      font-weight: $weight-semibold;
+      color: $white;
+    }
+  }
+
+  &__tagline {
+    font-size: $text-base;
+    font-weight: $weight-semibold;
+    color: $white;
+    margin-bottom: $space-3;
+  }
+
+  &__description {
+    font-size: $text-sm;
+    color: $text-on-dark-muted;
+    line-height: $line-height-relaxed;
+    margin-bottom: $space-6;
+  }
+
+  &__cta {
+    font-size: $text-sm;
+  }
+
+  // Columns
+  &__col {
+    ul { display: flex; flex-direction: column; gap: $space-2; }
+  }
+
+  &__col-heading {
+    font-size: $text-sm;
+    font-weight: $weight-semibold;
+    color: $white;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: $space-4;
+  }
+
+  &__link {
+    font-size: $text-sm;
+    color: $text-on-dark-muted;
+    text-decoration: none;
+    transition: color $transition-fast;
+
+    &:hover { color: $brand-accent; text-decoration: none; }
+    @include focus-ring($brand-accent);
+  }
+
+  // Contact list
+  &__contact-list {
+    li {
+      display: flex;
+      align-items: flex-start;
+      gap: $space-2;
+      margin-bottom: $space-2;
+    }
+
+    mat-icon {
+      font-size: 1rem;
+      width: 1rem;
+      height: 1rem;
+      color: $brand-accent;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+  }
+
+  &__hours {
+    margin-top: $space-4;
+    font-size: $text-xs;
+    color: $text-on-dark-muted;
+
+    p { margin: 0; line-height: 1.6; }
+  }
+
+  // Bottom bar
+  &__bottom {
+    margin-top: $space-12;
+    border-top: 1px solid rgba($white, 0.08);
+    padding-block: $space-5;
+  }
+
+  &__bottom-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $space-2;
+    text-align: center;
+
+    @include respond-to(md) {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    p {
+      font-size: $text-sm;
+      color: $text-on-dark-muted;
+      margin: 0;
+    }
+  }
+}

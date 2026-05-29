@@ -1,0 +1,151 @@
+<!-- ===== HERO ===== -->
+<section class="hero" aria-label="Introduction">
+  <div class="container hero__inner">
+    <div class="hero__content">
+      <p class="hero__eyebrow">IT Consulting & Software Development</p>
+      <h1 class="hero__headline">
+        Helping Small Businesses
+        <span class="hero__highlight">Build Stronger Digital Solutions</span>
+      </h1>
+      <p class="hero__sub">
+        BPSquare LLC partners with small businesses, minority-owned businesses,
+        and growing organizations to design, develop, and launch reliable digital
+        products that move your business forward.
+      </p>
+      <div class="hero__actions">
+        <a routerLink="/contact" class="btn-primary btn-lg">Start a Project</a>
+        <a routerLink="/services" class="btn-outline-white btn-lg">View Services</a>
+      </div>
+      <div class="hero__trust">
+        <div class="hero__trust-item">
+          <mat-icon aria-hidden="true">check_circle</mat-icon>
+          <span>Free initial consultation</span>
+        </div>
+        <div class="hero__trust-item">
+          <mat-icon aria-hidden="true">check_circle</mat-icon>
+          <span>No jargon, clear pricing</span>
+        </div>
+        <div class="hero__trust-item">
+          <mat-icon aria-hidden="true">check_circle</mat-icon>
+          <span>Small business specialists</span>
+        </div>
+      </div>
+    </div>
+      <!-- Mobile service tags: visible below lg, replaces the card grid -->
+      <div class="hero__mobile-tags" aria-hidden="true">
+        <span class="hero__mobile-tag"><mat-icon>code</mat-icon>Web Development</span>
+        <span class="hero__mobile-tag"><mat-icon>design_services</mat-icon>UI/UX Design</span>
+        <span class="hero__mobile-tag"><mat-icon>auto_awesome</mat-icon>Automation</span>
+        <span class="hero__mobile-tag"><mat-icon>support_agent</mat-icon>Consulting</span>
+      </div>
+
+      <div class="hero__visual" aria-hidden="true">
+      <div class="hero__visual-card">
+        <div class="hero__vc-icon">
+          <mat-icon>code</mat-icon>
+        </div>
+        <p class="hero__vc-label">Web Development</p>
+      </div>
+      <div class="hero__visual-card hero__visual-card--accent">
+        <div class="hero__vc-icon">
+          <mat-icon>design_services</mat-icon>
+        </div>
+        <p class="hero__vc-label">UI/UX Design</p>
+      </div>
+      <div class="hero__visual-card">
+        <div class="hero__vc-icon">
+          <mat-icon>auto_awesome</mat-icon>
+        </div>
+        <p class="hero__vc-label">Automation</p>
+      </div>
+      <div class="hero__visual-card hero__visual-card--accent">
+        <div class="hero__vc-icon">
+          <mat-icon>support_agent</mat-icon>
+        </div>
+        <p class="hero__vc-label">Consulting</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section class="section bg-surface" aria-labelledby="services-heading">
+  <div class="container">
+    <div class="section-heading">
+      <span class="eyebrow">What We Do</span>
+      <h2 id="services-heading">Services Built for Your Business</h2>
+      <p>From your first website to a custom web application, we provide practical technology solutions at every stage of your growth.</p>
+    </div>
+
+    @if (servicesLoading()) {
+      <bps-loading-state />
+    } @else {
+      <div class="services-grid">
+        @for (service of services(); track service.id) {
+          <bps-service-card [service]="service" />
+        }
+      </div>
+      <div class="services-cta text-center">
+        <a routerLink="/services" class="btn-outline">See All Services</a>
+      </div>
+    }
+  </div>
+</section>
+
+<!-- ===== WHY US ===== -->
+<section class="section" aria-labelledby="why-heading">
+  <div class="container">
+    <div class="section-heading">
+      <span class="eyebrow">Why BPSquare LLC</span>
+      <h2 id="why-heading">A Technology Partner You Can Count On</h2>
+      <p>We combine technical expertise with a genuine understanding of small business challenges.</p>
+    </div>
+    <div class="why-grid">
+      @for (item of whyItems; track item.heading) {
+        <div class="why-item">
+          <div class="why-item__icon" aria-hidden="true">
+            <mat-icon>{{ item.icon }}</mat-icon>
+          </div>
+          <h3 class="why-item__heading">{{ item.heading }}</h3>
+          <p class="why-item__body">{{ item.body }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROCESS PREVIEW ===== -->
+<section class="section bg-surface" aria-labelledby="process-heading">
+  <div class="container">
+    <div class="section-heading">
+      <span class="eyebrow">How We Work</span>
+      <h2 id="process-heading">A Clear, Predictable Process</h2>
+      <p>No surprises. We follow a proven delivery process that keeps you informed and in control at every step.</p>
+    </div>
+    <ol class="process-steps" role="list">
+      @for (step of processSteps; track step.label; let i = $index) {
+        <li class="process-step">
+          <div class="process-step__number" aria-hidden="true">{{ i + 1 }}</div>
+          <div class="process-step__icon" aria-hidden="true">
+            <mat-icon>{{ step.icon }}</mat-icon>
+          </div>
+          <h3 class="process-step__label">{{ step.label }}</h3>
+          <p class="process-step__desc">{{ step.desc }}</p>
+        </li>
+      }
+    </ol>
+    <div class="text-center" style="margin-top: 3rem">
+      <a routerLink="/process" class="btn-outline">Learn About Our Process</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<bps-cta-section
+  headline="Let's Talk About Your Project"
+  subtext="Schedule a free consultation and tell us what you're looking to build. We'll help you figure out the best path forward."
+  primaryLabel="Book a Free Consultation"
+  primaryPath="/contact"
+  secondaryLabel="View Our Work"
+  secondaryPath="/portfolio"
+/>

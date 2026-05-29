@@ -1,0 +1,50 @@
+<bps-page-hero
+  eyebrow="What We Offer"
+  headline="Services Built Around Your Goals"
+  subheadline="We provide practical, well-built technology solutions across six core areas. Every engagement starts with understanding what your business actually needs."
+  primaryCtaLabel="Request a Consultation"
+  primaryCtaPath="/contact"
+/>
+
+<section class="section" aria-labelledby="services-list-heading">
+  <div class="container">
+    <h2 id="services-list-heading" class="visually-hidden">All Services</h2>
+
+    @if (loading()) {
+      <bps-loading-state />
+    } @else if (error()) {
+      <bps-error-state (retry)="load()" />
+    } @else {
+      <div class="services-detail-grid">
+        @for (service of services(); track service.id) {
+          <bps-service-card [service]="service" [showFeatures]="true" />
+        }
+      </div>
+    }
+  </div>
+</section>
+
+<!-- Note -->
+<section class="section-sm bg-surface" aria-labelledby="note-heading">
+  <div class="container services-note">
+    <div class="services-note__icon" aria-hidden="true">
+      <mat-icon>info</mat-icon>
+    </div>
+    <div>
+      <h2 id="note-heading">Not Sure Which Service You Need?</h2>
+      <p>
+        That's completely normal. Many clients come to us knowing they have a problem
+        but not knowing exactly what the solution looks like. That's what the discovery
+        conversation is for. We'll help you understand your options and recommend a path
+        that makes sense for your goals and budget.
+      </p>
+      <a routerLink="/contact" class="btn-primary">Schedule a Free Consultation</a>
+    </div>
+  </div>
+</section>
+
+<bps-cta-section
+  headline="Ready to Get Started?"
+  subtext="Tell us what you're working on and we'll put together a practical proposal."
+  primaryLabel="Request a Consultation"
+/>

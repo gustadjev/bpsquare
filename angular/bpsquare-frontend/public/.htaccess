@@ -1,0 +1,63 @@
+# BPSquare LLC — public_html/.htaccess
+# Handles both WordPress (at root) and Angular SPA routing.
+#
+# DEPLOYMENT ORDER:
+#   1. Install WordPress via Bluehost 1-click installer (places WP files at root).
+#   2. Upload Angular dist/ files to root — they coexist with WP files.
+#   3. This .htaccess file REPLACES the default WordPress .htaccess.
+
+# ─── Security headers ────────────────────────────────────────────────────────
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# ─── Compression ─────────────────────────────────────────────────────────────
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json
+    AddOutputFilterByType DEFLATE image/svg+xml font/woff2
+</IfModule>
+
+# ─── Browser caching ─────────────────────────────────────────────────────────
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/html                 "access plus 0 seconds"
+    ExpiresByType application/javascript    "access plus 1 year"
+    ExpiresByType text/css                  "access plus 1 year"
+    ExpiresByType image/png                 "access plus 1 year"
+    ExpiresByType image/jpeg                "access plus 1 year"
+    ExpiresByType image/svg+xml             "access plus 1 year"
+    ExpiresByType font/woff2                "access plus 1 year"
+    ExpiresByType application/json          "access plus 0 seconds"
+</IfModule>
+
+# ─── Rewrite engine ──────────────────────────────────────────────────────────
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # --- 1. Let WordPress handle its own paths ---
+    # wp-admin, wp-login, wp-cron, xmlrpc — all go straight to WP
+    RewriteRule ^wp-admin(/.*)?$       - [L]
+    RewriteRule ^wp-login\.php         - [L]
+    RewriteRule ^wp-cron\.php          - [L]
+    RewriteRule ^xmlrpc\.php           - [L]
+
+    # WordPress static assets (plugins/themes/uploads)
+    RewriteRule ^wp-content/(.*)$      - [L]
+    RewriteRule ^wp-includes/(.*)$     - [L]
+
+    # WordPress REST API — pass through to WordPress
+    RewriteRule ^wp-json/(.*)$         /index.php [L]
+    RewriteRule ^?p=([0-9]+)$         /index.php?p=$1 [QSA,L]
+
+    # --- 2. Serve real files/directories as-is (Angular dist assets) ---
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+
+    # --- 3. All other requests → Angular index.html (SPA routing) ---
+    RewriteRule ^ /index.html [L]
+</IfModule>

@@ -1,0 +1,8 @@
+/* BPSquare Theme — Minimal admin styles */
+.bpsquare-admin-notice {
+    background: #e8f4fd;
+    border-left: 4px solid #4f9cf9;
+    padding: 12px 16px;
+    margin: 5px 0 15px;
+    font-size: 14px;
+}

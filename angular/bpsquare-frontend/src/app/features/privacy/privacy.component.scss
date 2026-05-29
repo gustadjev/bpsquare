@@ -1,0 +1,86 @@
+@use 'styles/variables' as *;
+@use 'styles/mixins' as *;
+
+.privacy-header {
+  background: $surface-bg;
+  border-bottom: 1px solid $surface-border;
+  padding: $space-12 0 $space-8;
+
+  h1 {
+    font-size: $text-4xl;
+    font-weight: $weight-extrabold;
+    margin-bottom: $space-2;
+  }
+
+  &__meta {
+    font-size: $text-sm;
+    color: $text-muted;
+  }
+}
+
+.privacy-body {
+  padding-top: $space-12;
+  padding-bottom: $space-16;
+  max-width: 780px;
+
+  section {
+    margin-bottom: $space-10;
+    border-bottom: 1px solid $surface-border;
+    padding-bottom: $space-10;
+
+    &:last-of-type {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+  }
+
+  h2 {
+    font-size: $text-2xl;
+    font-weight: $weight-bold;
+    margin-bottom: $space-4;
+    color: $text-primary;
+  }
+
+  h3 {
+    font-size: $text-lg;
+    font-weight: $weight-semibold;
+    margin: $space-5 0 $space-2;
+    color: $text-primary;
+  }
+
+  p {
+    font-size: $text-base;
+    color: $text-secondary;
+    line-height: $line-height-relaxed;
+    margin-bottom: $space-4;
+
+    &:last-child { margin-bottom: 0; }
+  }
+
+  ul {
+    color: $text-secondary;
+    line-height: $line-height-relaxed;
+    padding-left: $space-5;
+    margin-bottom: $space-4;
+
+    li { margin-bottom: $space-2; font-size: $text-base; }
+  }
+
+  a {
+    color: $brand-primary;
+    text-decoration: underline;
+
+    &:hover { color: $brand-primary-dark; }
+  }
+
+  address {
+    font-style: normal;
+    font-size: $text-base;
+    color: $text-secondary;
+    line-height: $line-height-relaxed;
+    background: $surface-bg;
+    border: 1px solid $surface-border;
+    border-radius: $radius-md;
+    padding: $space-5 $space-6;
+  }
+}

@@ -1,0 +1,147 @@
+@use 'styles/variables' as *;
+@use 'styles/mixins' as *;
+
+// Timeline
+.process-timeline {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.process-step {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: $space-6;
+
+  &__number-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    border-radius: $radius-full;
+    background: $brand-accent-light;
+    border: 2px solid $brand-primary;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+
+    mat-icon {
+      color: $brand-primary;
+      font-size: 1.5rem;
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
+
+  &__connector {
+    flex: 1;
+    width: 2px;
+    background: linear-gradient($brand-primary, rgba($brand-primary, 0.2));
+    min-height: $space-8;
+    margin: $space-1 0;
+  }
+
+  &__content {
+    padding-bottom: $space-10;
+  }
+
+  &__header {
+    margin-bottom: $space-3;
+  }
+
+  &__phase {
+    display: block;
+    font-size: $text-xs;
+    font-weight: $weight-semibold;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: $brand-primary;
+    margin-bottom: $space-1;
+  }
+
+  h3 {
+    font-size: $text-xl;
+    font-weight: $weight-bold;
+    color: $text-primary;
+  }
+
+  > .process-step__content > p {
+    color: $text-secondary;
+    line-height: $line-height-relaxed;
+    margin-bottom: $space-4;
+  }
+
+  &__details {
+    display: flex;
+    flex-direction: column;
+    gap: $space-2;
+
+    li {
+      display: flex;
+      align-items: center;
+      gap: $space-2;
+      font-size: $text-sm;
+      color: $text-secondary;
+
+      mat-icon {
+        color: $brand-primary;
+        font-size: 1.1rem;
+        width: 1.1rem;
+        height: 1.1rem;
+        flex-shrink: 0;
+      }
+    }
+  }
+}
+
+// Notes
+.process-notes {
+  h2 {
+    font-size: $text-2xl;
+    font-weight: $weight-bold;
+    text-align: center;
+    margin-bottom: $space-10;
+  }
+
+  &__grid {
+    display: grid;
+    gap: $space-6;
+    grid-template-columns: 1fr;
+
+    @include respond-to(md) { grid-template-columns: repeat(2, 1fr); }
+    @include respond-to(xl) { grid-template-columns: repeat(4, 1fr); }
+  }
+}
+
+.process-note {
+  text-align: center;
+
+  mat-icon {
+    font-size: 2rem;
+    width: 2rem;
+    height: 2rem;
+    color: $brand-primary;
+    margin-bottom: $space-3;
+  }
+
+  h3 {
+    font-size: $text-base;
+    font-weight: $weight-bold;
+    margin-bottom: $space-2;
+  }
+
+  p {
+    font-size: $text-sm;
+    color: $text-secondary;
+    line-height: $line-height-relaxed;
+  }
+}

@@ -1,0 +1,85 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-changeme_root}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-bpsquare_wp}
+      MYSQL_USER: ${MYSQL_USER:-bpsquare}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-changeme_db}
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD:-changeme_root}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - bpsquare
+
+  wordpress:
+    image: wordpress:latest
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8080:80"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: ${MYSQL_DATABASE:-bpsquare_wp}
+      WORDPRESS_DB_USER: ${MYSQL_USER:-bpsquare}
+      WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD:-changeme_db}
+      WORDPRESS_TABLE_PREFIX: ${WORDPRESS_TABLE_PREFIX:-bp_}
+      WORDPRESS_DEBUG: ${WORDPRESS_DEBUG:-true}
+      WORDPRESS_AUTH_KEY: ${WORDPRESS_AUTH_KEY:-local-dev-key-change-in-prod}
+      WORDPRESS_SECURE_AUTH_KEY: ${WORDPRESS_SECURE_AUTH_KEY:-local-dev-key-change-in-prod}
+      WORDPRESS_LOGGED_IN_KEY: ${WORDPRESS_LOGGED_IN_KEY:-local-dev-key-change-in-prod}
+      WORDPRESS_NONCE_KEY: ${WORDPRESS_NONCE_KEY:-local-dev-key-change-in-prod}
+      WORDPRESS_AUTH_SALT: ${WORDPRESS_AUTH_SALT:-local-dev-salt-change-in-prod}
+      WORDPRESS_SECURE_AUTH_SALT: ${WORDPRESS_SECURE_AUTH_SALT:-local-dev-salt-change-in-prod}
+      WORDPRESS_LOGGED_IN_SALT: ${WORDPRESS_LOGGED_IN_SALT:-local-dev-salt-change-in-prod}
+      WORDPRESS_NONCE_SALT: ${WORDPRESS_NONCE_SALT:-local-dev-salt-change-in-prod}
+      BPSQUARE_ADMIN_EMAIL: ${BPSQUARE_ADMIN_EMAIL:-admin@bpsquarellc.com}
+      BPSQUARE_FROM_EMAIL: ${BPSQUARE_FROM_EMAIL:-noreply@bpsquarellc.com}
+      BPSQUARE_FROM_NAME: ${BPSQUARE_FROM_NAME:-BPSquare LLC}
+      # Allow Angular dev server origin for CORS
+      BPSQUARE_ALLOWED_ORIGIN: ${ANGULAR_SITE_URL:-http://localhost:4200}
+    volumes:
+      # Mount theme and plugin from repo into WordPress
+      - ./wordpress/wp-content/themes/bpsquare-theme:/var/www/html/wp-content/themes/bpsquare-theme
+      - ./wordpress/wp-content/plugins/bpsquare-core:/var/www/html/wp-content/plugins/bpsquare-core
+      # Persist uploads between restarts
+      - wp_uploads:/var/www/html/wp-content/uploads
+    networks:
+      - bpsquare
+
+  angular:
+    image: node:20-alpine
+    working_dir: /app
+    restart: unless-stopped
+    depends_on:
+      - wordpress
+    ports:
+      - "4200:4200"
+    environment:
+      NODE_ENV: development
+      WP_API_URL: http://wordpress/wp-json
+    volumes:
+      - ./angular/bpsquare-frontend:/app
+      - angular_node_modules:/app/node_modules
+    command: >
+      sh -c "npm install && npx ng serve --host 0.0.0.0 --port 4200 --poll 2000"
+    networks:
+      - bpsquare
+
+volumes:
+  db_data:
+  wp_uploads:
+  angular_node_modules:
+
+networks:
+  bpsquare:
+    driver: bridge

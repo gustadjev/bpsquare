@@ -1,0 +1,13 @@
+/*
+ * Theme Name:  BPSquare Theme
+ * Theme URI:   https://bpsquarellc.com
+ * Description: Minimal headless WordPress theme for BPSquare LLC. The public-facing
+ *              website is served by Angular. This theme provides CORS headers,
+ *              a clean admin experience, and REST API support. Do not add
+ *              public-facing business logic here — use the bpsquare-core plugin.
+ * Version:     1.0.0
+ * Author:      BPSquare LLC
+ * Author URI:  https://bpsquarellc.com
+ * License:     Proprietary
+ * Text Domain: bpsquare-theme
+ */

@@ -1,0 +1,12 @@
+{
+  "name": "bp-square-llc",
+  "version": "1.0.0",
+  "description": "**Domain:** bpsquarellc.com   **Stack:** Headless WordPress (PHP/MySQL) + Angular 21   **Status:** Phase 1 MVP",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

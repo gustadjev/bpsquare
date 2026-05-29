@@ -1,0 +1,8 @@
+{
+  "/wp-json": {
+    "target": "http://bpsquare-llc.local",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "warn"
+  }
+}

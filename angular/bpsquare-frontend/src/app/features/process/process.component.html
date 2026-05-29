@@ -1,0 +1,79 @@
+<bps-page-hero
+  eyebrow="How We Work"
+  headline="A Clear Process, No Surprises"
+  subheadline="From the first conversation to post-launch support, here is exactly how we deliver projects at BPSquare LLC."
+  primaryCtaLabel="Start the Process"
+  primaryCtaPath="/contact"
+/>
+
+<section class="section" aria-labelledby="process-heading">
+  <div class="container">
+    <div class="section-heading">
+      <span class="eyebrow">Step by Step</span>
+      <h2 id="process-heading">The BPSquare Delivery Process</h2>
+      <p>Every project we take on follows this same structured approach, adapted to your specific needs.</p>
+    </div>
+
+    <ol class="process-timeline" aria-label="Project delivery phases">
+      @for (phase of phases; track phase.number) {
+        <li class="process-step">
+          <div class="process-step__number-col">
+            <div class="process-step__icon" aria-hidden="true">
+              <mat-icon>{{ phase.icon }}</mat-icon>
+            </div>
+            @if (phase.number < phases.length) {
+              <div class="process-step__connector" aria-hidden="true"></div>
+            }
+          </div>
+          <div class="process-step__content">
+            <div class="process-step__header">
+              <span class="process-step__phase">Phase {{ phase.number }}</span>
+              <h3>{{ phase.title }}</h3>
+            </div>
+            <p>{{ phase.description }}</p>
+            <ul class="process-step__details" [attr.aria-label]="'Details for ' + phase.title">
+              @for (detail of phase.details; track detail) {
+                <li><mat-icon aria-hidden="true">check_small</mat-icon>{{ detail }}</li>
+              }
+            </ul>
+          </div>
+        </li>
+      }
+    </ol>
+  </div>
+</section>
+
+<!-- Reassurance -->
+<section class="section-sm bg-surface" aria-labelledby="reassurance-heading">
+  <div class="container process-notes">
+    <h2 id="reassurance-heading">What to Expect Working With Us</h2>
+    <div class="process-notes__grid">
+      <div class="process-note">
+        <mat-icon aria-hidden="true">calendar_month</mat-icon>
+        <h3>Realistic Timelines</h3>
+        <p>We don't overpromise. We give you honest estimates and keep you updated when things change.</p>
+      </div>
+      <div class="process-note">
+        <mat-icon aria-hidden="true">message</mat-icon>
+        <h3>Regular Communication</h3>
+        <p>You'll always know where your project stands. We send updates proactively and respond promptly.</p>
+      </div>
+      <div class="process-note">
+        <mat-icon aria-hidden="true">manage_accounts</mat-icon>
+        <h3>You Stay in Control</h3>
+        <p>You review and approve designs and features before we move to the next phase. No surprises.</p>
+      </div>
+      <div class="process-note">
+        <mat-icon aria-hidden="true">handshake</mat-icon>
+        <h3>Built for Handoff</h3>
+        <p>At the end of every project, you own the code, the content, and everything we build together.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<bps-cta-section
+  headline="Let's Start With a Conversation"
+  subtext="The first step is simple — tell us about your project and we'll take it from there."
+  primaryLabel="Schedule a Discovery Call"
+/>

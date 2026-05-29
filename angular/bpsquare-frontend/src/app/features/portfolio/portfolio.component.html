@@ -1,0 +1,99 @@
+<bps-page-hero
+  eyebrow="Our Work"
+  headline="Projects That Solve Real Problems"
+  subheadline="A look at the types of projects we deliver — from website redesigns to internal business tools and process automation."
+  primaryCtaLabel="Start Your Project"
+  primaryCtaPath="/contact"
+/>
+
+<section class="section" aria-labelledby="portfolio-heading">
+  <div class="container">
+    <div class="section-heading">
+      <span class="eyebrow">Case Studies</span>
+      <h2 id="portfolio-heading">Recent Work</h2>
+      <p>These examples represent the categories of work we do. Client details are kept confidential where requested.</p>
+    </div>
+
+    @if (loading()) {
+      <bps-loading-state />
+    } @else if (error()) {
+      <bps-error-state (retry)="load()" />
+    } @else {
+      <div class="case-study-grid">
+        @for (cs of caseStudies(); track cs.id) {
+          <article class="case-study-card" [class.is-expanded]="expanded() === cs.id">
+            <div class="case-study-card__header">
+              <div class="case-study-card__title-row">
+                <h3>{{ cs.title }}</h3>
+                <button
+                  type="button"
+                  class="case-study-card__toggle"
+                  [attr.aria-expanded]="expanded() === cs.id"
+                  [attr.aria-controls]="'case-study-' + cs.id"
+                  (click)="toggle(cs.id)"
+                >
+                  <mat-icon>{{ expanded() === cs.id ? 'expand_less' : 'expand_more' }}</mat-icon>
+                  <span class="visually-hidden">{{ expanded() === cs.id ? 'Collapse' : 'Expand' }} {{ cs.title }}</span>
+                </button>
+              </div>
+              @if (cs.technologies && cs.technologies.length) {
+                <ul class="case-study-card__tech-list" aria-label="Technologies used">
+                  @for (tech of cs.technologies; track tech) {
+                    <li>{{ tech }}</li>
+                  }
+                </ul>
+              }
+            </div>
+
+            <div
+              class="case-study-card__body"
+              [id]="'case-study-' + cs.id"
+              [hidden]="expanded() !== cs.id"
+            >
+              @if (cs.problem) {
+                <div class="case-study-block">
+                  <h4><mat-icon aria-hidden="true">help_outline</mat-icon>The Challenge</h4>
+                  <p>{{ cs.problem }}</p>
+                </div>
+              }
+              @if (cs.solution) {
+                <div class="case-study-block">
+                  <h4><mat-icon aria-hidden="true">lightbulb</mat-icon>The Solution</h4>
+                  <p>{{ cs.solution }}</p>
+                </div>
+              }
+              @if (cs.outcome) {
+                <div class="case-study-block case-study-block--outcome">
+                  <h4><mat-icon aria-hidden="true">trending_up</mat-icon>The Outcome</h4>
+                  <p>{{ cs.outcome }}</p>
+                </div>
+              }
+            </div>
+          </article>
+        }
+      </div>
+    }
+  </div>
+</section>
+
+<!-- Disclaimer -->
+<section class="section-sm bg-surface" aria-labelledby="disclaimer-heading">
+  <div class="container portfolio-disclaimer">
+    <mat-icon aria-hidden="true">lock</mat-icon>
+    <div>
+      <h2 id="disclaimer-heading">Confidentiality First</h2>
+      <p>
+        Some client details are intentionally general to respect confidentiality agreements.
+        When we discuss your project privately, we can share more detail about relevant
+        experience. We never share client data, proprietary processes, or anything
+        shared with us in confidence.
+      </p>
+    </div>
+  </div>
+</section>
+
+<bps-cta-section
+  headline="Have a Project in Mind?"
+  subtext="Tell us about it and we'll discuss how we can help."
+  primaryLabel="Tell Us About Your Project"
+/>

@@ -1,0 +1,154 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// ---------------------------------------------------------------------------
+// Global typography
+// ---------------------------------------------------------------------------
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: $font-sans;
+  color: $text-primary;
+  background-color: $white;
+  line-height: $line-height-normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: $weight-bold;
+  line-height: $line-height-tight;
+  margin: 0 0 $space-4;
+  color: $text-primary;
+}
+
+h1 { font-size: $text-4xl; letter-spacing: -0.025em; }
+h2 { font-size: $text-3xl; letter-spacing: -0.02em; }
+h3 { font-size: $text-2xl; }
+h4 { font-size: $text-xl; }
+h5 { font-size: $text-lg; }
+h6 { font-size: $text-base; }
+
+p {
+  margin: 0 0 $space-4;
+  line-height: $line-height-relaxed;
+
+  &:last-child { margin-bottom: 0; }
+}
+
+a {
+  color: $brand-primary;
+  text-decoration: none;
+  transition: color $transition-fast;
+
+  &:hover { color: $brand-primary-dark; text-decoration: underline; }
+  &:focus-visible { outline: 2px solid $brand-primary; outline-offset: 2px; }
+}
+
+ul, ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+// ---------------------------------------------------------------------------
+// Layout utilities
+// ---------------------------------------------------------------------------
+
+.container {
+  @include container;
+}
+
+.section {
+  @include section-padding;
+}
+
+.section-sm {
+  @include section-padding-sm;
+}
+
+// Light surface sections
+.bg-surface   { background-color: $surface; }
+.bg-white      { background-color: $white; }
+.bg-accent-light { background-color: $brand-accent-light; }
+
+// Dark sections
+.bg-dark       { background-color: $brand-dark; }
+.bg-dark-mid   { background-color: $brand-dark-mid; }
+
+// ---------------------------------------------------------------------------
+// Utility classes
+// ---------------------------------------------------------------------------
+
+.text-center    { text-align: center; }
+.text-left      { text-align: left; }
+.text-right     { text-align: right; }
+
+.text-primary-color  { color: $text-primary; }
+.text-secondary-color { color: $text-secondary; }
+.text-muted-color    { color: $text-muted; }
+.text-white-color    { color: $white; }
+.text-brand          { color: $brand-primary; }
+
+.font-bold      { font-weight: $weight-bold; }
+.font-semibold  { font-weight: $weight-semibold; }
+
+.visually-hidden { @include visually-hidden; }
+
+// ---------------------------------------------------------------------------
+// Buttons (global utility classes)
+// ---------------------------------------------------------------------------
+
+.btn-primary  { @include btn-primary; }
+.btn-outline  { @include btn-outline; }
+.btn-outline-white { @include btn-outline-white; }
+
+.btn-lg {
+  padding: $space-4 $space-8;
+  font-size: $text-lg;
+}
+
+// ---------------------------------------------------------------------------
+// Section headings
+// ---------------------------------------------------------------------------
+
+.section-heading { @include section-heading; }
+
+// ---------------------------------------------------------------------------
+// Angular Material global overrides (keep minimal)
+// ---------------------------------------------------------------------------
+
+.mat-mdc-form-field {
+  width: 100%;
+}
+
+.mat-mdc-snack-bar-container.success-snackbar {
+  --mdc-snackbar-container-color: #{$success};
+  --mdc-snackbar-supporting-text-color: #{$white};
+}
+
+.mat-mdc-snack-bar-container.error-snackbar {
+  --mdc-snackbar-container-color: #{$error};
+  --mdc-snackbar-supporting-text-color: #{$white};
+}

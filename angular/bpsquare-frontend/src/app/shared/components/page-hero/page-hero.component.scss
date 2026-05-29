@@ -1,0 +1,56 @@
+@use 'styles/variables' as *;
+@use 'styles/mixins' as *;
+
+.page-hero {
+  padding-block: $space-24 $space-16;
+  padding-top: calc($space-24 + 68px); // account for fixed header height
+  background: $surface;
+
+  &--dark {
+    background: $brand-dark;
+
+    .page-hero__eyebrow { color: $brand-accent; }
+    .page-hero__headline { color: $white; }
+    .page-hero__sub { color: $text-on-dark-muted; }
+  }
+
+  &__inner {
+    max-width: 800px;
+    text-align: center;
+    margin-inline: auto;
+  }
+
+  &__eyebrow {
+    display: inline-block;
+    font-size: $text-sm;
+    font-weight: $weight-semibold;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: $brand-primary;
+    margin-bottom: $space-4;
+  }
+
+  &__headline {
+    @include heading-xl;
+    margin-bottom: $space-5;
+
+    @include respond-to(lg) {
+      font-size: $text-6xl;
+    }
+  }
+
+  &__sub {
+    @include body-lg;
+    color: $text-secondary;
+    max-width: 600px;
+    margin-inline: auto;
+    margin-bottom: $space-8;
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-4;
+    justify-content: center;
+  }
+}

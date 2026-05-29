@@ -1,0 +1,316 @@
+@use 'styles/variables' as *;
+@use 'styles/mixins' as *;
+
+// ===== HERO =====
+.hero {
+  background: $brand-dark;
+  padding-top: calc(68px + #{$space-16});
+  padding-bottom: $space-16;
+  overflow: hidden;
+
+  &__inner {
+    display: grid;
+    gap: $space-12;
+    align-items: center;
+
+    @include respond-to(lg) {
+      grid-template-columns: 1fr 1fr;
+      gap: $space-16;
+    }
+  }
+
+  &__eyebrow {
+    display: inline-block;
+    font-size: $text-sm;
+    font-weight: $weight-semibold;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: $brand-accent;
+    margin-bottom: $space-4;
+  }
+
+  &__headline {
+    @include heading-xl;
+    color: $white;
+    margin-bottom: $space-5;
+
+    @include respond-to(lg) { font-size: $text-6xl; }
+  }
+
+  &__highlight {
+    color: $brand-accent;
+    display: block;
+  }
+
+  &__sub {
+    @include body-lg;
+    color: $text-on-dark-muted;
+    margin-bottom: $space-8;
+    max-width: 540px;
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-4;
+    margin-bottom: $space-8;
+  }
+
+  &__trust {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-5;
+  }
+
+  &__trust-item {
+    display: flex;
+    align-items: center;
+    gap: $space-2;
+    font-size: $text-sm;
+    color: $text-on-dark-muted;
+
+    mat-icon {
+      font-size: 1rem;
+      width: 1rem;
+      height: 1rem;
+      color: $brand-accent;
+    }
+  }
+
+  &__mobile-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-2;
+    margin-top: $space-6;
+
+    @include respond-to(lg) {
+      display: none;
+    }
+  }
+
+  &__mobile-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-2;
+    padding: $space-2 $space-4;
+    background: rgba($white, 0.08);
+    border: 1px solid rgba($brand-accent, 0.35);
+    border-radius: $radius-full;
+    font-size: $text-sm;
+    font-weight: $weight-medium;
+    color: $text-on-dark;
+
+    mat-icon {
+      font-size: 1rem;
+      width: 1rem;
+      height: 1rem;
+      color: $brand-accent;
+    }
+  }
+
+  // Visual cards cluster
+  &__visual {
+    display: none;
+
+    @include respond-to(lg) {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: $space-4;
+    }
+  }
+
+  &__visual-card {
+    @include card-dark;
+    padding: $space-6;
+    display: flex;
+    flex-direction: column;
+    gap: $space-3;
+
+    &--accent {
+      background: $brand-primary;
+      border-color: transparent;
+
+      .hero__vc-icon mat-icon { color: $white; }
+      .hero__vc-label { color: rgba($white, 0.9); }
+    }
+  }
+
+  &__vc-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: $radius-md;
+    background: rgba($white, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    mat-icon {
+      color: $brand-accent;
+      font-size: 1.25rem;
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+  }
+
+  &__vc-label {
+    font-size: $text-sm;
+    font-weight: $weight-semibold;
+    color: $text-on-dark;
+    margin: 0;
+  }
+}
+
+// ===== SERVICES =====
+.services-grid {
+  @include grid-auto-fill(280px);
+
+  @include respond-to(lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.services-cta {
+  margin-top: $space-10;
+}
+
+// ===== WHY US =====
+.why-grid {
+  display: grid;
+  gap: $space-8;
+  grid-template-columns: 1fr;
+
+  @include respond-to(md) { grid-template-columns: repeat(2, 1fr); }
+  @include respond-to(xl) { grid-template-columns: repeat(3, 1fr); }
+}
+
+.why-item {
+  &__icon {
+    width: 52px;
+    height: 52px;
+    border-radius: $radius-lg;
+    background: $brand-accent-light;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: $space-4;
+
+    mat-icon {
+      color: $brand-primary;
+      font-size: 1.5rem;
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
+
+  &__heading {
+    font-size: $text-lg;
+    font-weight: $weight-bold;
+    color: $text-primary;
+    margin-bottom: $space-2;
+  }
+
+  &__body {
+    font-size: $text-base;
+    color: $text-secondary;
+    line-height: $line-height-relaxed;
+    margin: 0;
+  }
+}
+
+// ===== PROCESS STEPS =====
+.process-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-5;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.process-step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: $space-6 $space-5;
+  background: $white;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-sm;
+  border: 1px solid $surface-border;
+
+  // Mobile: full width
+  flex: 0 0 100%;
+
+  // sm: 2 per row
+  @include respond-to(sm) {
+    flex: 0 0 calc(50% - #{$space-5} / 2);
+  }
+
+  // lg: 4 per row — items 5, 6, 7 wrap into centered second row
+  @include respond-to(lg) {
+    flex: 0 0 calc(25% - #{$space-5} * 3 / 4);
+  }
+
+  // Connecting arrow between steps (lg only, hidden on 4th and last)
+  @include respond-to(lg) {
+    &::after {
+      content: '';
+      position: absolute;
+      right: calc(-#{$space-5} / 2 - 6px);
+      top: 50%;
+      transform: translateY(-50%);
+      width: 12px;
+      height: 12px;
+      border-top: 2px solid $surface-border;
+      border-right: 2px solid $surface-border;
+      rotate: 45deg;
+    }
+
+    // No connector after the 4th item (end of row 1) or the last item
+    &:nth-child(4)::after,
+    &:last-child::after {
+      display: none;
+    }
+  }
+
+  &__number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: $radius-full;
+    background: $brand-primary;
+    color: $white;
+    font-size: $text-base;
+    font-weight: $weight-bold;
+    margin-bottom: $space-4;
+    flex-shrink: 0;
+  }
+
+  &__icon {
+    mat-icon {
+      font-size: 1.75rem;
+      width: 1.75rem;
+      height: 1.75rem;
+      color: $brand-primary;
+    }
+    margin-bottom: $space-3;
+  }
+
+  &__label {
+    font-size: $text-base;
+    font-weight: $weight-bold;
+    color: $text-primary;
+    margin-bottom: $space-2;
+  }
+
+  &__desc {
+    font-size: $text-sm;
+    color: $text-secondary;
+    line-height: $line-height-relaxed;
+    margin: 0;
+  }
+}

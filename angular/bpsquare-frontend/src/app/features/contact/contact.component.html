@@ -1,0 +1,257 @@
+<div class="contact-page">
+
+  <!-- Page header -->
+  <header class="contact-header">
+    <div class="container">
+      <span class="eyebrow">Get in Touch</span>
+      <h1>Start a Conversation About Your Project</h1>
+      <p>
+        Fill out the form below and we will get back to you within one business day.
+        There's no obligation — just an honest conversation about what you need.
+      </p>
+    </div>
+  </header>
+
+  <div class="contact-layout container">
+
+    <!-- Sidebar info -->
+    <aside class="contact-info" aria-label="Contact information">
+      <div class="contact-info__card">
+        <h2>What Happens Next</h2>
+        <ol class="contact-info__steps">
+          <li>
+            <span aria-hidden="true" class="step-num">1</span>
+            <div>
+              <strong>We review your inquiry</strong>
+              <p>We read every submission and respond within one business day.</p>
+            </div>
+          </li>
+          <li>
+            <span aria-hidden="true" class="step-num">2</span>
+            <div>
+              <strong>Discovery call</strong>
+              <p>We schedule a 30–60 minute call to learn more about your goals.</p>
+            </div>
+          </li>
+          <li>
+            <span aria-hidden="true" class="step-num">3</span>
+            <div>
+              <strong>Proposal</strong>
+              <p>We prepare a clear, detailed estimate and proposal for your review.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <div class="contact-info__card">
+        <h2>Direct Contact</h2>
+        <ul class="contact-info__links">
+          <li>
+            <mat-icon aria-hidden="true">email</mat-icon>
+            <a href="mailto:bpsquare479@gmail.com">bpsquare479&#64;gmail.com</a>
+          </li>
+          <li>
+            <mat-icon aria-hidden="true">language</mat-icon>
+            <a href="https://bpsquarellc.com">bpsquarellc.com</a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Form area -->
+    <main class="contact-form-area" aria-label="Project inquiry form">
+
+      @if (status() === 'success') {
+        <!-- Success state -->
+        <div class="form-feedback form-feedback--success" role="alert">
+          <mat-icon aria-hidden="true">check_circle</mat-icon>
+          <div>
+            <h2>Inquiry Submitted!</h2>
+            <p>
+              Thank you for reaching out to BPSquare LLC. We've received your inquiry
+              and will respond within one business day. We look forward to learning
+              about your project.
+            </p>
+          </div>
+        </div>
+      }
+
+      @else if (status() === 'error') {
+        <!-- Error state -->
+        <div class="form-feedback form-feedback--error" role="alert">
+          <mat-icon aria-hidden="true">error</mat-icon>
+          <div>
+            <h2>Something Went Wrong</h2>
+            <p>
+              We were unable to submit your inquiry at this time. Please try again or
+              reach us directly at
+              <a href="mailto:bpsquare479@gmail.com">bpsquare479&#64;gmail.com</a>.
+            </p>
+            <button type="button" class="btn-outline" (click)="retry()">Try Again</button>
+          </div>
+        </div>
+      }
+
+      @else {
+        <!-- Inquiry form -->
+        <form
+          [formGroup]="form"
+          (ngSubmit)="onSubmit()"
+          class="inquiry-form"
+          novalidate
+          aria-label="Project inquiry"
+        >
+
+          <!-- Honeypot: must stay hidden and empty -->
+          <div aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;" tabindex="-1">
+            <label for="website-field">Leave this blank</label>
+            <input id="website-field" type="text" formControlName="website" autocomplete="off" tabindex="-1" />
+          </div>
+
+          <fieldset class="form-section">
+            <legend>Your Information</legend>
+            <div class="form-row">
+              <mat-form-field appearance="outline">
+                <mat-label>First Name</mat-label>
+                <input matInput formControlName="firstName" type="text" autocomplete="given-name"
+                       [attr.aria-describedby]="fieldError('firstName') ? 'firstName-error' : null" />
+                @if (fieldError('firstName')) {
+                  <mat-error [id]="'firstName-error'">{{ fieldError('firstName') }}</mat-error>
+                }
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>Last Name</mat-label>
+                <input matInput formControlName="lastName" type="text" autocomplete="family-name"
+                       [attr.aria-describedby]="fieldError('lastName') ? 'lastName-error' : null" />
+                @if (fieldError('lastName')) {
+                  <mat-error [id]="'lastName-error'">{{ fieldError('lastName') }}</mat-error>
+                }
+              </mat-form-field>
+            </div>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Business Name</mat-label>
+              <input matInput formControlName="businessName" type="text" autocomplete="organization"
+                     [attr.aria-describedby]="fieldError('businessName') ? 'businessName-error' : null" />
+              @if (fieldError('businessName')) {
+                <mat-error [id]="'businessName-error'">{{ fieldError('businessName') }}</mat-error>
+              }
+            </mat-form-field>
+
+            <div class="form-row">
+              <mat-form-field appearance="outline">
+                <mat-label>Email Address</mat-label>
+                <input matInput formControlName="email" type="email" autocomplete="email"
+                       [attr.aria-describedby]="fieldError('email') ? 'email-error' : null" />
+                @if (fieldError('email')) {
+                  <mat-error [id]="'email-error'">{{ fieldError('email') }}</mat-error>
+                }
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>Phone Number (Optional)</mat-label>
+                <input matInput formControlName="phone" type="tel" autocomplete="tel" />
+              </mat-form-field>
+            </div>
+          </fieldset>
+
+          <fieldset class="form-section">
+            <legend>Project Details</legend>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Service Interested In</mat-label>
+              <mat-select formControlName="serviceInterest"
+                          [attr.aria-describedby]="fieldError('serviceInterest') ? 'service-error' : null">
+                @for (s of services; track s) {
+                  <mat-option [value]="s">{{ s }}</mat-option>
+                }
+              </mat-select>
+              @if (fieldError('serviceInterest')) {
+                <mat-error [id]="'service-error'">{{ fieldError('serviceInterest') }}</mat-error>
+              }
+            </mat-form-field>
+
+            <div class="form-row">
+              <mat-form-field appearance="outline">
+                <mat-label>Estimated Budget Range</mat-label>
+                <mat-select formControlName="budgetRange"
+                            [attr.aria-describedby]="fieldError('budgetRange') ? 'budget-error' : null">
+                  @for (b of budgetRanges; track b) {
+                    <mat-option [value]="b">{{ b }}</mat-option>
+                  }
+                </mat-select>
+                @if (fieldError('budgetRange')) {
+                  <mat-error [id]="'budget-error'">{{ fieldError('budgetRange') }}</mat-error>
+                }
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>Preferred Timeline</mat-label>
+                <mat-select formControlName="preferredTimeline"
+                            [attr.aria-describedby]="fieldError('preferredTimeline') ? 'timeline-error' : null">
+                  @for (t of timelines; track t) {
+                    <mat-option [value]="t">{{ t }}</mat-option>
+                  }
+                </mat-select>
+                @if (fieldError('preferredTimeline')) {
+                  <mat-error [id]="'timeline-error'">{{ fieldError('preferredTimeline') }}</mat-error>
+                }
+              </mat-form-field>
+            </div>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Project Description</mat-label>
+              <textarea
+                matInput
+                formControlName="projectDescription"
+                rows="6"
+                placeholder="Tell us about your project, business goals, current challenges, and anything else that would help us understand what you need."
+                [attr.aria-describedby]="fieldError('projectDescription') ? 'desc-error' : null"
+              ></textarea>
+              @if (fieldError('projectDescription')) {
+                <mat-error [id]="'desc-error'">{{ fieldError('projectDescription') }}</mat-error>
+              }
+            </mat-form-field>
+          </fieldset>
+
+          <fieldset class="form-section form-section--consent">
+            <legend class="visually-hidden">Consent</legend>
+            <mat-checkbox formControlName="consentAccepted" color="primary"
+                          [attr.aria-describedby]="fieldError('consentAccepted') ? 'consent-error' : null">
+              I agree that BPSquare LLC may use the information I provide to respond to my inquiry
+              and contact me about my project. I understand this information will not be sold
+              or shared for unrelated marketing purposes.
+            </mat-checkbox>
+            @if (fieldError('consentAccepted')) {
+              <p class="consent-error" id="consent-error" role="alert">{{ fieldError('consentAccepted') }}</p>
+            }
+          </fieldset>
+
+          <div class="form-actions">
+            <button
+              type="submit"
+              class="btn-primary btn-primary--lg"
+              [disabled]="status() === 'submitting'"
+              [attr.aria-busy]="status() === 'submitting'"
+            >
+              @if (status() === 'submitting') {
+                <span class="spinner" aria-hidden="true"></span>
+                Submitting…
+              } @else {
+                <mat-icon aria-hidden="true">send</mat-icon>
+                Submit Inquiry
+              }
+            </button>
+            <p class="form-actions__note">
+              <mat-icon aria-hidden="true">lock</mat-icon>
+              Your information is kept private and will never be sold.
+            </p>
+          </div>
+
+        </form>
+      }
+
+    </main>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<section class="page-hero" [class.page-hero--dark]="dark" aria-label="Page header">
+  <div class="container page-hero__inner">
+    @if (eyebrow) {
+      <p class="page-hero__eyebrow">{{ eyebrow }}</p>
+    }
+    <h1 class="page-hero__headline">{{ headline }}</h1>
+    @if (subheadline) {
+      <p class="page-hero__sub">{{ subheadline }}</p>
+    }
+    @if (primaryCtaLabel || secondaryCtaLabel) {
+      <div class="page-hero__actions">
+        @if (primaryCtaLabel && primaryCtaPath) {
+          <a [routerLink]="primaryCtaPath" class="btn-primary btn-lg">{{ primaryCtaLabel }}</a>
+        }
+        @if (secondaryCtaLabel && secondaryCtaPath) {
+          <a [routerLink]="secondaryCtaPath" class="btn-outline-white btn-lg">{{ secondaryCtaLabel }}</a>
+        }
+      </div>
+    }
+  </div>
+</section>

@@ -1,0 +1,70 @@
+<footer class="footer" aria-label="Site footer">
+  <div class="container footer__inner">
+
+    <!-- Brand column -->
+    <div class="footer__brand">
+      <a routerLink="/" class="footer__logo" aria-label="BPSquare LLC home">
+        <span class="logo-mark">BP²</span>
+        <span class="logo-text">BPSquare LLC</span>
+      </a>
+      <p class="footer__tagline">
+        Practical Technology Solutions for Growing Businesses
+      </p>
+      <p class="footer__description">
+        We help small businesses, minority-owned businesses, and growing
+        organizations build reliable digital solutions.
+      </p>
+      <a routerLink="/contact" class="btn-primary footer__cta">
+        Get In Touch
+      </a>
+    </div>
+
+    <!-- Quick links -->
+    <div class="footer__col">
+      <h3 class="footer__col-heading">Quick Links</h3>
+      <ul role="list">
+        @for (link of quickLinks; track link.path + link.label) {
+          <li><a [routerLink]="link.path" class="footer__link">{{ link.label }}</a></li>
+        }
+      </ul>
+    </div>
+
+    <!-- Services links -->
+    <div class="footer__col">
+      <h3 class="footer__col-heading">Services</h3>
+      <ul role="list">
+        @for (s of services; track s.label) {
+          <li><a [routerLink]="s.path" class="footer__link">{{ s.label }}</a></li>
+        }
+      </ul>
+    </div>
+
+    <!-- Contact -->
+    <div class="footer__col">
+      <h3 class="footer__col-heading">Get In Touch</h3>
+      <ul class="footer__contact-list" role="list">
+        <li>
+          <mat-icon aria-hidden="true">email</mat-icon>
+          <a href="mailto:bpsquare479@gmail.com" class="footer__link">bpsquare479&#64;gmail.com</a>
+        </li>
+        <li>
+          <mat-icon aria-hidden="true">language</mat-icon>
+          <a href="https://bpsquarellc.com" class="footer__link">bpsquarellc.com</a>
+        </li>
+      </ul>
+      <div class="footer__hours">
+        <p>Business hours:</p>
+        <p>Mon–Fri, 9 AM – 6 PM ET</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom bar -->
+  <div class="footer__bottom">
+    <div class="container footer__bottom-inner">
+      <p>&copy; {{ currentYear }} BPSquare LLC. All rights reserved.</p>
+      <a routerLink="/privacy" class="footer__link">Privacy Policy</a>
+    </div>
+  </div>
+</footer>

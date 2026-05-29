@@ -1,0 +1,137 @@
+@use 'styles/variables' as *;
+@use 'styles/mixins' as *;
+
+.eyebrow-label {
+  display: inline-block;
+  font-size: $text-sm;
+  font-weight: $weight-semibold;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $brand-primary;
+  margin-bottom: $space-4;
+}
+
+// Mission
+.about-mission {
+  display: grid;
+  gap: $space-12;
+  align-items: start;
+
+  @include respond-to(lg) { grid-template-columns: 3fr 2fr; }
+
+  &__text {
+    h2 { @include heading-md; margin-bottom: $space-5; }
+    p  { color: $text-secondary; line-height: $line-height-relaxed; margin-bottom: $space-4; }
+  }
+
+  &__stat-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $space-4;
+  }
+}
+
+.about-stat {
+  background: $brand-accent-light;
+  border-radius: $radius-lg;
+  padding: $space-5;
+  text-align: center;
+
+  &__number {
+    font-size: $text-4xl;
+    font-weight: $weight-extrabold;
+    color: $brand-primary;
+    line-height: 1;
+    margin-bottom: $space-2;
+  }
+
+  &__label {
+    font-size: $text-sm;
+    color: $text-secondary;
+    line-height: $line-height-snug;
+  }
+}
+
+// Values grid
+.values-grid {
+  display: grid;
+  gap: $space-6;
+  grid-template-columns: 1fr;
+
+  @include respond-to(md) { grid-template-columns: repeat(2, 1fr); }
+  @include respond-to(xl) { grid-template-columns: repeat(3, 1fr); }
+}
+
+.value-card {
+  background: $white;
+  border-radius: $radius-lg;
+  padding: $space-6 $space-7;
+  border: 1px solid $surface-border;
+  transition: box-shadow $transition-normal;
+
+  &:hover { box-shadow: $shadow-md; }
+
+  &__icon {
+    width: 48px;
+    height: 48px;
+    border-radius: $radius-md;
+    background: $brand-accent-light;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: $space-4;
+
+    mat-icon {
+      color: $brand-primary;
+      font-size: 1.375rem;
+      width: 1.375rem;
+      height: 1.375rem;
+    }
+  }
+
+  h3 {
+    font-size: $text-lg;
+    font-weight: $weight-bold;
+    margin-bottom: $space-2;
+  }
+
+  p {
+    font-size: $text-base;
+    color: $text-secondary;
+    line-height: $line-height-relaxed;
+    margin: 0;
+  }
+}
+
+// Credibility
+.about-cred {
+  max-width: 780px;
+
+  &__content {
+    h2 { @include heading-md; margin-bottom: $space-5; }
+    p  { color: $text-secondary; line-height: $line-height-relaxed; margin-bottom: $space-4; }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: $space-3;
+    margin: $space-6 0 $space-8;
+
+    li {
+      display: flex;
+      align-items: center;
+      gap: $space-3;
+      font-size: $text-base;
+      color: $text-primary;
+    }
+
+    mat-icon {
+      color: $brand-primary;
+      font-size: 1.125rem;
+      width: 1.125rem;
+      height: 1.125rem;
+      flex-shrink: 0;
+    }
+  }
+}

@@ -1,0 +1,12 @@
+<section class="cta-section" aria-labelledby="cta-heading">
+  <div class="container cta-section__inner">
+    <h2 id="cta-heading" class="cta-section__headline">{{ headline }}</h2>
+    <p class="cta-section__sub">{{ subtext }}</p>
+    <div class="cta-section__actions">
+      <a [routerLink]="primaryPath" class="btn-primary btn-lg">{{ primaryLabel }}</a>
+      @if (secondaryLabel && secondaryPath) {
+        <a [routerLink]="secondaryPath" class="btn-outline-white btn-lg">{{ secondaryLabel }}</a>
+      }
+    </div>
+  </div>
+</section>

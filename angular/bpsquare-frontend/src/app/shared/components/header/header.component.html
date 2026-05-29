@@ -1,0 +1,68 @@
+<header class="header" [class.header--scrolled]="scrolled()">
+  <div class="container header__inner">
+    <!-- Logo -->
+    <a routerLink="/" class="header__logo" aria-label="BPSquare LLC — Home" (click)="closeMenu()">
+      <span class="logo-mark">BP²</span>
+      <span class="logo-text">BPSquare LLC</span>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav class="header__nav" aria-label="Primary navigation">
+      <ul class="header__nav-list" role="list">
+        @for (link of navLinks; track link.path) {
+          <li>
+            <a
+              [routerLink]="link.path"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: link.path === '/' }"
+              class="header__nav-link"
+            >{{ link.label }}</a>
+          </li>
+        }
+      </ul>
+    </nav>
+
+    <!-- CTA Button (desktop) -->
+    <a routerLink="/contact" class="btn-primary header__cta" (click)="closeMenu()">
+      Start a Project
+    </a>
+
+    <!-- Mobile Menu Toggle -->
+    <button
+      class="header__menu-toggle"
+      (click)="toggleMenu()"
+      [attr.aria-expanded]="menuOpen()"
+      aria-controls="mobile-menu"
+      aria-label="Toggle navigation menu"
+    >
+      <mat-icon>{{ menuOpen() ? 'close' : 'menu' }}</mat-icon>
+    </button>
+  </div>
+
+  <!-- Mobile Navigation -->
+  <nav
+    id="mobile-menu"
+    class="header__mobile-nav"
+    [class.open]="menuOpen()"
+    aria-label="Mobile navigation"
+  >
+    <ul role="list">
+      @for (link of navLinks; track link.path) {
+        <li>
+          <a
+            [routerLink]="link.path"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: link.path === '/' }"
+            class="header__mobile-link"
+            (click)="closeMenu()"
+          >{{ link.label }}</a>
+        </li>
+      }
+      <li>
+        <a routerLink="/contact" class="btn-primary header__mobile-cta" (click)="closeMenu()">
+          Start a Project
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>
