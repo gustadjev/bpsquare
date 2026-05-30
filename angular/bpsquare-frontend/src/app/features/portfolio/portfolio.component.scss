@@ -6,7 +6,7 @@
   flex-direction: column;
   gap: $space-4;
   max-width: 900px;
-  margin: 0 auto;
+  margin: 0;
 }
 
 .case-study-card {
@@ -89,6 +89,23 @@
     }
   }
 
+  &__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-2;
+    margin-bottom: $space-3;
+
+    span {
+      color: $text-secondary;
+      font-size: $text-xs;
+      font-weight: $weight-semibold;
+      padding: 2px $space-3;
+      border-radius: $radius-full;
+      background: $surface-bg;
+      border: 1px solid $surface-border;
+    }
+  }
+
   &__body {
     border-top: 1px solid $surface-border;
     padding: $space-6 $space-7;
@@ -136,7 +153,10 @@
   display: flex;
   align-items: flex-start;
   gap: $space-5;
-  max-width: 720px;
+
+  > div {
+    max-width: 720px;
+  }
 
   > mat-icon {
     flex-shrink: 0;

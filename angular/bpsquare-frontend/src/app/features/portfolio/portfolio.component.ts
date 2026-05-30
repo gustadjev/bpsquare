@@ -28,8 +28,8 @@ export class PortfolioComponent implements OnInit {
 
   ngOnInit(): void {
     this.seo.set({
-      title: 'Portfolio & Case Studies',
-      description: 'See examples of BPSquare LLC project work. Browse case studies covering website development, custom web applications, and digital business solutions.',
+      title: 'Project Lab & Build Notes',
+      description: 'Explore BPSquare LLC early project patterns, build notes, and work-in-progress examples for custom web apps, workflow automation, and WordPress business systems.',
       canonicalUrl: 'https://bpsquarellc.com/portfolio',
     });
     this.load();
@@ -46,5 +46,15 @@ export class PortfolioComponent implements OnInit {
 
   toggle(id: number): void {
     this.expanded.set(this.expanded() === id ? null : id);
+  }
+
+  statusLabel(status: CaseStudy['status']): string {
+    const labels: Record<NonNullable<CaseStudy['status']>, string> = {
+      concept: 'Concept',
+      volunteer: 'Volunteer',
+      in_progress: 'In Progress',
+      completed: 'Completed',
+    };
+    return labels[status ?? 'concept'];
   }
 }

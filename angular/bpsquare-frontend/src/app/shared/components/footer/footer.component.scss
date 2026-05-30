@@ -126,9 +126,9 @@
   &__bottom-inner {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     gap: $space-2;
-    text-align: center;
+    text-align: left;
 
     @include respond-to(md) {
       flex-direction: row;

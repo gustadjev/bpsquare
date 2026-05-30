@@ -26,8 +26,8 @@ export class ProcessComponent implements OnInit {
   readonly phases: ProcessPhase[] = [
     {
       number: 1, icon: 'search', title: 'Discovery Call',
-      description: 'We start by learning about your business, goals, and the problem you\'re trying to solve.',
-      details: ['30–60 minute call or meeting', 'No technical knowledge required', 'We listen first, then ask questions', 'Completely free and no obligation'],
+      description: 'We start by learning how your business works today and where the workflow is creating friction.',
+      details: ['Focused call or meeting', 'No technical knowledge required', 'Workflow and pain-point review', 'Clear next-step recommendation'],
     },
     {
       number: 2, icon: 'assignment', title: 'Requirements Gathering',
@@ -41,8 +41,8 @@ export class ProcessComponent implements OnInit {
     },
     {
       number: 4, icon: 'design_services', title: 'Design & Wireframe',
-      description: 'Before we write a single line of code, we design how everything will look and work so there are no surprises.',
-      details: ['Page layouts and wireframes', 'Visual design mockups', 'Your review and approval', 'Design revisions included'],
+      description: 'Before we write code, we design how the tool, page, form, or admin flow should work for real users.',
+      details: ['Page layouts and wireframes', 'Workflow screens', 'Your review and approval', 'Design revisions included'],
     },
     {
       number: 5, icon: 'code', title: 'Development',
@@ -68,8 +68,8 @@ export class ProcessComponent implements OnInit {
 
   ngOnInit(): void {
     this.seo.set({
-      title: 'Our Process',
-      description: 'Learn how BPSquare LLC delivers technology projects — from discovery call through launch and ongoing support. A clear, predictable process with no surprises.',
+      title: 'How We Build',
+      description: 'Learn how BPSquare LLC scopes, designs, builds, tests, launches, and supports custom web apps, internal tools, WordPress systems, and workflow automation.',
       canonicalUrl: 'https://bpsquarellc.com/process',
     });
   }

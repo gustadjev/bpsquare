@@ -8,7 +8,7 @@
   flex-direction: column;
   gap: 0;
   max-width: 860px;
-  margin: 0 auto;
+  margin: 0;
 }
 
 .process-step {
@@ -108,7 +108,7 @@
   h2 {
     font-size: $text-2xl;
     font-weight: $weight-bold;
-    text-align: center;
+    text-align: left;
     margin-bottom: $space-10;
   }
 
@@ -123,7 +123,7 @@
 }
 
 .process-note {
-  text-align: center;
+  text-align: left;
 
   mat-icon {
     font-size: 2rem;

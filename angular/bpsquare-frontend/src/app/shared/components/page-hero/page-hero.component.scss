@@ -16,8 +16,8 @@
 
   &__inner {
     max-width: 800px;
-    text-align: center;
-    margin-inline: auto;
+    text-align: left;
+    margin-inline: 0;
   }
 
   &__eyebrow {
@@ -43,7 +43,7 @@
     @include body-lg;
     color: $text-secondary;
     max-width: 600px;
-    margin-inline: auto;
+    margin-inline: 0;
     margin-bottom: $space-8;
   }
 
@@ -51,6 +51,6 @@
     display: flex;
     flex-wrap: wrap;
     gap: $space-4;
-    justify-content: center;
+    justify-content: flex-start;
   }
 }

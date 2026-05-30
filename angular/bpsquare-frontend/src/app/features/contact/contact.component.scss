@@ -156,6 +156,13 @@
   h2 { font-size: $text-2xl; font-weight: $weight-bold; margin-bottom: $space-3; }
   p  { color: $text-secondary; line-height: $line-height-relaxed; margin-bottom: $space-5; }
 
+  &__detail {
+    background: rgba($white, 0.7);
+    border-radius: $radius-md;
+    padding: $space-3 $space-4;
+    font-size: $text-sm;
+  }
+
   a {
     color: $brand-primary;
     &:hover { text-decoration: underline; }

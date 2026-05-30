@@ -1,14 +1,45 @@
 <bps-page-hero
   eyebrow="What We Offer"
-  headline="Services Built Around Your Goals"
-  subheadline="We provide practical, well-built technology solutions across six core areas. Every engagement starts with understanding what your business actually needs."
+  headline="Practical Systems for Service-Based Small Businesses"
+  subheadline="BPSquare focuses on custom web apps, internal tools, workflow automation, WordPress systems, and Angular integrations that modernize day-to-day operations."
   primaryCtaLabel="Request a Consultation"
   primaryCtaPath="/contact"
 />
 
+<section class="section" aria-labelledby="focus-services-heading">
+  <div class="container">
+    <div class="section-heading">
+      <span class="eyebrow">Core Focus</span>
+      <h2 id="focus-services-heading">Where BPSquare Can Help First</h2>
+      <p>As a first-year, founder-led studio, BPSquare takes on focused projects where a practical full-stack build can make operations clearer, faster, or easier to manage.</p>
+    </div>
+
+    <div class="focus-service-grid">
+      @for (service of focusServices; track service.title) {
+        <article class="focus-service-card">
+          <div class="focus-service-card__icon" aria-hidden="true">
+            <mat-icon>{{ service.icon }}</mat-icon>
+          </div>
+          <h3>{{ service.title }}</h3>
+          <p>{{ service.summary }}</p>
+          <ul role="list">
+            @for (detail of service.details; track detail) {
+              <li><mat-icon aria-hidden="true">check</mat-icon>{{ detail }}</li>
+            }
+          </ul>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
 <section class="section" aria-labelledby="services-list-heading">
   <div class="container">
-    <h2 id="services-list-heading" class="visually-hidden">All Services</h2>
+    <div class="section-heading">
+      <span class="eyebrow">CMS Managed</span>
+      <h2 id="services-list-heading">Service Details</h2>
+      <p>These service cards can be managed from WordPress as the business grows and new offerings become more defined.</p>
+    </div>
 
     @if (loading()) {
       <bps-loading-state />
@@ -33,10 +64,10 @@
     <div>
       <h2 id="note-heading">Not Sure Which Service You Need?</h2>
       <p>
-        That's completely normal. Many clients come to us knowing they have a problem
+        That's completely normal. Early clients often know they have a workflow problem
         but not knowing exactly what the solution looks like. That's what the discovery
-        conversation is for. We'll help you understand your options and recommend a path
-        that makes sense for your goals and budget.
+        conversation is for. We'll help you understand your options, decide whether a
+        phased approach makes sense, and recommend a path that fits your goals and budget.
       </p>
       <a routerLink="/contact" class="btn-primary">Schedule a Free Consultation</a>
     </div>

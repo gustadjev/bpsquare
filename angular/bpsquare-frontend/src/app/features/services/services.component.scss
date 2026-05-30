@@ -1,6 +1,78 @@
 @use 'styles/variables' as *;
 @use 'styles/mixins' as *;
 
+.focus-service-grid {
+  display: grid;
+  gap: $space-6;
+  grid-template-columns: 1fr;
+
+  @include respond-to(md) { grid-template-columns: repeat(2, 1fr); }
+  @include respond-to(xl) { grid-template-columns: repeat(3, 1fr); }
+}
+
+.focus-service-card {
+  background: $white;
+  border: 1px solid $surface-border;
+  border-radius: $radius-lg;
+  padding: $space-6;
+  box-shadow: $shadow-sm;
+
+  &__icon {
+    width: 48px;
+    height: 48px;
+    border-radius: $radius-lg;
+    background: $brand-accent-light;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: $space-4;
+
+    mat-icon {
+      color: $brand-primary;
+      font-size: 1.5rem;
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
+
+  h3 {
+    font-size: $text-lg;
+    font-weight: $weight-bold;
+    margin-bottom: $space-3;
+  }
+
+  p {
+    color: $text-secondary;
+    line-height: $line-height-relaxed;
+    margin-bottom: $space-4;
+  }
+
+  ul {
+    display: grid;
+    gap: $space-2;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    display: flex;
+    align-items: flex-start;
+    gap: $space-2;
+    color: $text-secondary;
+    font-size: $text-sm;
+
+    mat-icon {
+      color: $color-success;
+      font-size: 1rem;
+      width: 1rem;
+      height: 1rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+  }
+}
+
 .services-detail-grid {
   display: grid;
   gap: $space-6;
@@ -14,7 +86,10 @@
   display: flex;
   align-items: flex-start;
   gap: $space-6;
-  max-width: 860px;
+
+  > div {
+    max-width: 760px;
+  }
 
   &__icon {
     flex-shrink: 0;

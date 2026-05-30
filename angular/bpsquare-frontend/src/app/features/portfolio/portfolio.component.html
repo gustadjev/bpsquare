@@ -1,7 +1,7 @@
 <bps-page-hero
-  eyebrow="Our Work"
-  headline="Projects That Solve Real Problems"
-  subheadline="A look at the types of projects we deliver — from website redesigns to internal business tools and process automation."
+  eyebrow="Project Lab"
+  headline="Early Work, Build Notes, and Project Patterns"
+  subheadline="BPSquare is in its first year, so this space is framed honestly: selected work, pilot concepts, volunteer project learnings, and the kinds of systems we are building toward."
   primaryCtaLabel="Start Your Project"
   primaryCtaPath="/contact"
 />
@@ -9,9 +9,9 @@
 <section class="section" aria-labelledby="portfolio-heading">
   <div class="container">
     <div class="section-heading">
-      <span class="eyebrow">Case Studies</span>
-      <h2 id="portfolio-heading">Recent Work</h2>
-      <p>These examples represent the categories of work we do. Client details are kept confidential where requested.</p>
+      <span class="eyebrow">Work in Progress</span>
+      <h2 id="portfolio-heading">Project Patterns</h2>
+      <p>Until completed public case studies are available, this page highlights the problem-solution patterns BPSquare is focused on: operations tools, workflow automation, and WordPress-powered business systems.</p>
     </div>
 
     @if (loading()) {
@@ -36,6 +36,15 @@
                   <span class="visually-hidden">{{ expanded() === cs.id ? 'Collapse' : 'Expand' }} {{ cs.title }}</span>
                 </button>
               </div>
+              <div class="case-study-card__meta">
+                <span>{{ statusLabel(cs.status) }}</span>
+                @if (cs.clientType) {
+                  <span>{{ cs.clientType }}</span>
+                }
+                @if (cs.isConfidential) {
+                  <span>Confidential</span>
+                }
+              </div>
               @if (cs.technologies && cs.technologies.length) {
                 <ul class="case-study-card__tech-list" aria-label="Technologies used">
                   @for (tech of cs.technologies; track tech) {
@@ -56,6 +65,12 @@
                   <p>{{ cs.problem }}</p>
                 </div>
               }
+              @if (cs.constraints) {
+                <div class="case-study-block">
+                  <h4><mat-icon aria-hidden="true">rule</mat-icon>Constraints</h4>
+                  <p>{{ cs.constraints }}</p>
+                </div>
+              }
               @if (cs.solution) {
                 <div class="case-study-block">
                   <h4><mat-icon aria-hidden="true">lightbulb</mat-icon>The Solution</h4>
@@ -66,6 +81,12 @@
                 <div class="case-study-block case-study-block--outcome">
                   <h4><mat-icon aria-hidden="true">trending_up</mat-icon>The Outcome</h4>
                   <p>{{ cs.outcome }}</p>
+                </div>
+              }
+              @if (cs.lessonsLearned) {
+                <div class="case-study-block">
+                  <h4><mat-icon aria-hidden="true">school</mat-icon>Lessons Learned</h4>
+                  <p>{{ cs.lessonsLearned }}</p>
                 </div>
               }
             </div>
@@ -79,14 +100,14 @@
 <!-- Disclaimer -->
 <section class="section-sm bg-surface" aria-labelledby="disclaimer-heading">
   <div class="container portfolio-disclaimer">
-    <mat-icon aria-hidden="true">lock</mat-icon>
+    <mat-icon aria-hidden="true">construction</mat-icon>
     <div>
-      <h2 id="disclaimer-heading">Confidentiality First</h2>
+      <h2 id="disclaimer-heading">Early-Stage and Confidentiality First</h2>
       <p>
-        Some client details are intentionally general to respect confidentiality agreements.
-        When we discuss your project privately, we can share more detail about relevant
-        experience. We never share client data, proprietary processes, or anything
-        shared with us in confidence.
+        BPSquare is currently building its first-year body of work, including early client
+        conversations and volunteer projects. Some details are intentionally general while
+        projects are in progress or confidential. As work matures, this page can grow into
+        full case studies with problem, constraints, solution, tools, outcome, and lessons learned.
       </p>
     </div>
   </div>

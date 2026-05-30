@@ -35,7 +35,7 @@
   background: $brand-accent-light;
   border-radius: $radius-lg;
   padding: $space-5;
-  text-align: center;
+  text-align: left;
 
   &__number {
     font-size: $text-4xl;
@@ -105,9 +105,9 @@
 
 // Credibility
 .about-cred {
-  max-width: 780px;
-
   &__content {
+    max-width: 780px;
+
     h2 { @include heading-md; margin-bottom: $space-5; }
     p  { color: $text-secondary; line-height: $line-height-relaxed; margin-bottom: $space-4; }
   }

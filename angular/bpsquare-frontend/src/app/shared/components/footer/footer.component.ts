@@ -13,19 +13,18 @@ export class FooterComponent {
   readonly currentYear = new Date().getFullYear();
 
   readonly services = [
-    { label: 'Website Development', path: '/services' },
-    { label: 'Web Application Development', path: '/services' },
-    { label: 'UI/UX Design & Prototyping', path: '/services' },
-    { label: 'Business Process Automation', path: '/services' },
-    { label: 'Technical Consulting', path: '/services' },
-    { label: 'Maintenance & Support', path: '/services' },
+    { label: 'Custom Web Apps', path: '/services' },
+    { label: 'Internal Tools', path: '/services' },
+    { label: 'Workflow Automation', path: '/services' },
+    { label: 'WordPress + Angular Integration', path: '/services' },
+    { label: 'Custom WordPress Themes', path: '/services' },
   ];
 
   readonly quickLinks = [
     { label: 'About', path: '/about' },
     { label: 'Services', path: '/services' },
     { label: 'Our Process', path: '/process' },
-    { label: 'Portfolio', path: '/portfolio' },
+    { label: 'Project Lab', path: '/portfolio' },
     { label: 'Contact', path: '/contact' },
     { label: 'Privacy Policy', path: '/privacy' },
   ];

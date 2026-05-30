@@ -5,6 +5,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -36,15 +37,26 @@ export class ContactComponent implements OnInit {
   private readonly seo     = inject(SeoService);
 
   status = signal<FormStatus>('idle');
+  errorMessage = signal<string | null>(null);
 
   readonly services = [
-    'Website Development',
-    'Custom Web Application Development',
-    'UI/UX Design & Prototyping',
-    'Business Process Automation',
-    'Technical Consulting',
-    'Maintenance & Support',
+    'Custom Web App for a Service Business',
+    'Internal Tool or Workflow Automation',
+    'Small Business Operations Modernization',
+    'WordPress + Angular / Business System Integration',
+    'Custom WordPress Theme Development',
+    'Project Scoping or Technical Consulting',
     'Not Sure / General Inquiry',
+  ];
+
+  readonly businessTypes = [
+    'Service-Based Small Business',
+    'Minority-Owned Business',
+    'Nonprofit / Community Organization',
+    'Solo Consultant / Professional Service',
+    'Healthcare / Wellness Service',
+    'Finance / Administrative Service',
+    'Other',
   ];
 
   readonly budgetRanges = [
@@ -66,15 +78,26 @@ export class ContactComponent implements OnInit {
     'Flexible / Not Sure',
   ];
 
+  readonly phasedOptions = [
+    'Yes, I prefer a phased approach',
+    'Maybe, I would like guidance',
+    'No, I need a complete launch',
+    'Not sure yet',
+  ];
+
   form: FormGroup = this.fb.group({
     firstName:          ['', [Validators.required, Validators.minLength(2)]],
     lastName:           ['', [Validators.required, Validators.minLength(2)]],
     businessName:       ['', Validators.required],
+    businessType:       [''],
+    currentWebsite:     ['', [Validators.pattern(/^https?:\/\/.+\..+/i)]],
     email:              ['', [Validators.required, Validators.email]],
     phone:              ['', []],
     serviceInterest:    ['', Validators.required],
     budgetRange:        ['', Validators.required],
     preferredTimeline:  ['', Validators.required],
+    phasedApproach:     [''],
+    operationalProblem: [''],
     projectDescription: ['', [Validators.required, Validators.minLength(20)]],
     consentAccepted:    [false, Validators.requiredTrue],
     website:            [''], // honeypot — must remain empty
@@ -83,7 +106,7 @@ export class ContactComponent implements OnInit {
   ngOnInit(): void {
     this.seo.set({
       title: 'Contact Us',
-      description: 'Ready to start your project? Submit a project inquiry to BPSquare LLC and we will get back to you within one business day.',
+      description: 'Start a project conversation with BPSquare LLC about a custom web app, internal tool, workflow automation, WordPress system, or Angular integration.',
       canonicalUrl: 'https://bpsquarellc.com/contact',
     });
   }
@@ -93,13 +116,15 @@ export class ContactComponent implements OnInit {
   fieldError(field: string): string | null {
     const ctrl = this.form.get(field);
     if (!ctrl || !ctrl.invalid || !ctrl.touched) return null;
+    if (ctrl.errors?.['requiredTrue']) return 'You must accept the terms to continue.';
+    if (field === 'consentAccepted' && ctrl.errors?.['required']) return 'You must accept the terms to continue.';
     if (ctrl.errors?.['required']) return 'This field is required.';
     if (ctrl.errors?.['email']) return 'Please enter a valid email address.';
+    if (ctrl.errors?.['pattern']) return 'Please enter a valid URL starting with http:// or https://.';
     if (ctrl.errors?.['minlength']) {
       const min = ctrl.errors['minlength'].requiredLength as number;
       return `Please enter at least ${min} characters.`;
     }
-    if (ctrl.errors?.['requiredTrue']) return 'You must accept the terms to continue.';
     return null;
   }
 
@@ -113,19 +138,41 @@ export class ContactComponent implements OnInit {
     if (this.form.value.website) return;
 
     this.status.set('submitting');
+    this.errorMessage.set(null);
 
     this.inquiry.submit(this.form.value).subscribe({
       next: () => {
         this.status.set('success');
         this.form.reset();
       },
-      error: () => {
+      error: (error: HttpErrorResponse) => {
+        this.errorMessage.set(this.toFriendlyError(error));
         this.status.set('error');
       },
     });
   }
 
   retry(): void {
+    this.errorMessage.set(null);
     this.status.set('idle');
+  }
+
+  private toFriendlyError(error: HttpErrorResponse): string {
+    if (error.status === 429) {
+      return 'Too many submissions were sent recently. Please wait a bit or email BPSquare directly.';
+    }
+    if (error.status === 400) {
+      const validation = error.error?.data?.errors ?? error.error?.errors;
+      const firstError = validation
+        ? Object.values(validation).flat().find(Boolean)
+        : null;
+      return typeof firstError === 'string'
+        ? firstError
+        : 'Some form details need attention. Please review the fields and try again.';
+    }
+    if (error.status === 0) {
+      return 'The form could not reach the server. Please check your connection or email BPSquare directly.';
+    }
+    return error.error?.message || 'We were unable to submit your inquiry at this time.';
   }
 }

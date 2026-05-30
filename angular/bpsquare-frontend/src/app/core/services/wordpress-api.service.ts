@@ -9,6 +9,7 @@ import { Service } from '../models/service.model';
 import { CaseStudy } from '../models/case-study.model';
 import { Testimonial } from '../models/testimonial.model';
 import { Faq } from '../models/faq.model';
+import { FALLBACK_PROJECT_LAB, FALLBACK_SERVICES } from '../data/fallback-content';
 
 /**
  * WordPress API Service
@@ -42,13 +43,19 @@ export class WordpressApiService {
   getServices(): Observable<Service[]> {
     return this.http
       .get<Service[]>(`${this.wpApi}/bpsquare/v1/services`)
-      .pipe(catchError(() => of([])));
+      .pipe(
+        map((services) => services.length ? services : FALLBACK_SERVICES),
+        catchError(() => of(FALLBACK_SERVICES))
+      );
   }
 
   getCaseStudies(): Observable<CaseStudy[]> {
     return this.http
       .get<CaseStudy[]>(`${this.wpApi}/bpsquare/v1/case-studies`)
-      .pipe(catchError(() => of([])));
+      .pipe(
+        map((caseStudies) => caseStudies.length ? caseStudies : FALLBACK_PROJECT_LAB),
+        catchError(() => of(FALLBACK_PROJECT_LAB))
+      );
   }
 
   getTestimonials(): Observable<Testimonial[]> {

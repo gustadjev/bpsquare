@@ -46,12 +46,18 @@ export class HomeComponent implements OnInit {
   ];
 
   readonly whyItems: WhyItem[] = [
-    { icon: 'business_center', heading: 'Business-First Approach', body: 'We start with your goals, not the technology. Every decision is tied back to your business outcomes.' },
-    { icon: 'chat', heading: 'Clear Communication', body: 'No jargon. We keep you informed at every step and translate technical concepts into plain language.' },
-    { icon: 'trending_up', heading: 'Scalable Solutions', body: 'We build for where you are today and where you\'re going tomorrow.' },
-    { icon: 'diversity_3', heading: 'Community Focus', body: 'Proud to support small, minority-owned, and community-based businesses with the same quality solutions as larger enterprises.' },
-    { icon: 'verified', heading: 'Practical Technology', body: 'We recommend technologies that fit your budget, team, and needs — not the most expensive options.' },
-    { icon: 'local_hospital', heading: 'Domain Experience', body: 'Experience across healthcare, finance, and business systems means we understand real-world complexity.' },
+    { icon: 'business_center', heading: 'Operations-First Approach', body: 'We start with how your service business actually works, then shape the technology around the workflow.' },
+    { icon: 'chat', heading: 'Clear Communication', body: 'No jargon. You get practical explanations, honest tradeoffs, and steady updates while the work moves forward.' },
+    { icon: 'schema', heading: 'Systems That Connect', body: 'We build websites, admin tools, forms, APIs, and automations that support the same business process.' },
+    { icon: 'diversity_3', heading: 'Small Business Focus', body: 'BPSquare is built for service businesses that need serious engineering without a large-agency engagement.' },
+    { icon: 'verified', heading: 'Production-Minded Build', body: 'Security, accessibility, SEO, performance, and maintainability are considered from the beginning.' },
+    { icon: 'local_hospital', heading: 'Domain Experience', body: 'Experience across healthcare, finance, and business systems helps us respect accuracy, privacy, and usability.' },
+  ];
+
+  readonly deliveryPrinciples: WhyItem[] = [
+    { icon: 'person', heading: 'Direct Access', body: 'You work with the person scoping and building the solution, not a handoff chain.' },
+    { icon: 'route', heading: 'Phased Scope', body: 'Projects can start with a practical first release, then grow once the workflow is proven.' },
+    { icon: 'handyman', heading: 'Maintainable Systems', body: 'The goal is software your business can keep using, updating, and understanding after launch.' },
   ];
 
   ngOnInit(): void {

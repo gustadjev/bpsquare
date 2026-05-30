@@ -54,7 +54,7 @@
     flex: 1;
     display: none;
 
-    @include respond-to(lg) { display: flex; justify-content: center; }
+    @include respond-to(lg) { display: flex; justify-content: flex-start; }
   }
 
   &__nav-list {

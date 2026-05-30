@@ -22,7 +22,7 @@ export class HeaderComponent {
     { label: 'About',     path: '/about' },
     { label: 'Services',  path: '/services' },
     { label: 'Process',   path: '/process' },
-    { label: 'Portfolio', path: '/portfolio' },
+    { label: 'Project Lab', path: '/portfolio' },
     { label: 'Contact',   path: '/contact' },
   ];
 

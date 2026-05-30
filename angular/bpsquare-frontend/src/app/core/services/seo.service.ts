@@ -59,9 +59,9 @@ export class SeoService {
 
   setDefault(): void {
     this.set({
-      title: 'Practical Technology Solutions for Growing Businesses',
+      title: 'Custom Web Apps & WordPress Systems for Small Businesses',
       description:
-        'BPSquare LLC provides website development, custom web applications, UI/UX design, business process automation, and technical consulting for small and minority-owned businesses.',
+        'BPSquare LLC builds custom web apps, internal tools, workflow automation, WordPress themes, and Angular business systems for service-based small businesses.',
       canonicalUrl: SITE_URL + '/',
     });
   }

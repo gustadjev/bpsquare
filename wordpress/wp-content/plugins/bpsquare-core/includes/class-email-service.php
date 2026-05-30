@@ -95,11 +95,15 @@ class Email_Service {
 			'First Name'         => $data['firstName'] ?? '',
 			'Last Name'          => $data['lastName'] ?? '',
 			'Business Name'      => $data['businessName'] ?? '—',
+			'Business Type'      => $data['businessType'] ?? '—',
+			'Current Website/App'=> $data['currentWebsite'] ?? '—',
 			'Email'              => $data['email'] ?? '',
 			'Phone'              => $data['phone'] ?? '—',
 			'Service Interest'   => $data['serviceInterest'] ?? '',
 			'Budget Range'       => $data['budgetRange'] ?? '—',
 			'Preferred Timeline' => $data['preferredTimeline'] ?? '—',
+			'Phased Approach'    => $data['phasedApproach'] ?? '—',
+			'Operational Problem'=> $data['operationalProblem'] ?? '—',
 			'Project Description'=> $data['projectDescription'] ?? '',
 		];
 
@@ -116,6 +120,7 @@ class Email_Service {
 			'<!DOCTYPE html><html><body style="font-family:sans-serif;color:#333;max-width:640px;margin:0 auto">
 			<h2 style="color:#4f9cf9">New Project Inquiry — BPSquare LLC</h2>
 			<p>A new inquiry has been submitted via the website contact form.</p>
+			<p><strong>Suggested next action:</strong> Review the operational problem, set an inquiry status, and reply with either a discovery call option or a clarifying question.</p>
 			<table style="width:100%%;border-collapse:collapse;margin:20px 0">%s</table>
 			<p><a href="%s" style="display:inline-block;padding:10px 20px;background:#4f9cf9;color:#fff;text-decoration:none;border-radius:4px">View in Admin</a></p>
 			<hr style="border:none;border-top:1px solid #eee;margin:24px 0">
@@ -130,9 +135,9 @@ class Email_Service {
 		return sprintf(
 			'<!DOCTYPE html><html><body style="font-family:sans-serif;color:#333;max-width:600px;margin:0 auto">
 			<h2 style="color:#4f9cf9">Thank You, %s!</h2>
-			<p>We\'ve received your project inquiry and will be in touch within 1–2 business days.</p>
-			<p>If your request is urgent, feel free to reach out directly at <a href="mailto:hello@bpsquarellc.com">hello@bpsquarellc.com</a>.</p>
-			<p>We look forward to learning more about your project.</p>
+			<p>We\'ve received your project inquiry and will review the business problem, timeline, and best next step.</p>
+			<p>You can expect a practical response within 1–2 business days. If your request is urgent, feel free to reach out directly at <a href="mailto:bpsquare479@gmail.com">bpsquare479@gmail.com</a>.</p>
+			<p>We look forward to learning more about the system you want to build.</p>
 			<p style="margin-top:32px">— The BPSquare LLC Team<br>
 			<a href="https://bpsquarellc.com">bpsquarellc.com</a></p>
 			<hr style="border:none;border-top:1px solid #eee;margin:24px 0">

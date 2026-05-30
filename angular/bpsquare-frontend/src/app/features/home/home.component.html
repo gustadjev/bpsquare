@@ -2,15 +2,15 @@
 <section class="hero" aria-label="Introduction">
   <div class="container hero__inner">
     <div class="hero__content">
-      <p class="hero__eyebrow">IT Consulting & Software Development</p>
+      <p class="hero__eyebrow">Founder-Led Full-Stack Development</p>
       <h1 class="hero__headline">
-        Helping Small Businesses
-        <span class="hero__highlight">Build Stronger Digital Solutions</span>
+        Custom Web Apps and WordPress Systems
+        <span class="hero__highlight">For Service-Based Small Businesses</span>
       </h1>
       <p class="hero__sub">
-        BPSquare LLC partners with small businesses, minority-owned businesses,
-        and growing organizations to design, develop, and launch reliable digital
-        products that move your business forward.
+        BPSquare LLC helps small service businesses modernize operations with
+        internal tools, workflow automation, custom WordPress themes, and
+        Angular-powered business systems.
       </p>
       <div class="hero__actions">
         <a routerLink="/contact" class="btn-primary btn-lg">Start a Project</a>
@@ -19,24 +19,24 @@
       <div class="hero__trust">
         <div class="hero__trust-item">
           <mat-icon aria-hidden="true">check_circle</mat-icon>
-          <span>Free initial consultation</span>
+          <span>First-year, founder-led service</span>
         </div>
         <div class="hero__trust-item">
           <mat-icon aria-hidden="true">check_circle</mat-icon>
-          <span>No jargon, clear pricing</span>
+          <span>Practical phased delivery</span>
         </div>
         <div class="hero__trust-item">
           <mat-icon aria-hidden="true">check_circle</mat-icon>
-          <span>Small business specialists</span>
+          <span>Built for maintainability</span>
         </div>
       </div>
     </div>
       <!-- Mobile service tags: visible below lg, replaces the card grid -->
       <div class="hero__mobile-tags" aria-hidden="true">
-        <span class="hero__mobile-tag"><mat-icon>code</mat-icon>Web Development</span>
-        <span class="hero__mobile-tag"><mat-icon>design_services</mat-icon>UI/UX Design</span>
+        <span class="hero__mobile-tag"><mat-icon>code</mat-icon>Custom Web Apps</span>
+        <span class="hero__mobile-tag"><mat-icon>schema</mat-icon>Internal Tools</span>
         <span class="hero__mobile-tag"><mat-icon>auto_awesome</mat-icon>Automation</span>
-        <span class="hero__mobile-tag"><mat-icon>support_agent</mat-icon>Consulting</span>
+        <span class="hero__mobile-tag"><mat-icon>dashboard_customize</mat-icon>WordPress Systems</span>
       </div>
 
       <div class="hero__visual" aria-hidden="true">
@@ -44,13 +44,13 @@
         <div class="hero__vc-icon">
           <mat-icon>code</mat-icon>
         </div>
-        <p class="hero__vc-label">Web Development</p>
+        <p class="hero__vc-label">Custom Web Apps</p>
       </div>
       <div class="hero__visual-card hero__visual-card--accent">
         <div class="hero__vc-icon">
-          <mat-icon>design_services</mat-icon>
+          <mat-icon>schema</mat-icon>
         </div>
-        <p class="hero__vc-label">UI/UX Design</p>
+        <p class="hero__vc-label">Internal Tools</p>
       </div>
       <div class="hero__visual-card">
         <div class="hero__vc-icon">
@@ -60,9 +60,9 @@
       </div>
       <div class="hero__visual-card hero__visual-card--accent">
         <div class="hero__vc-icon">
-          <mat-icon>support_agent</mat-icon>
+          <mat-icon>dashboard_customize</mat-icon>
         </div>
-        <p class="hero__vc-label">Consulting</p>
+        <p class="hero__vc-label">WordPress + Angular</p>
       </div>
     </div>
   </div>
@@ -73,8 +73,8 @@
   <div class="container">
     <div class="section-heading">
       <span class="eyebrow">What We Do</span>
-      <h2 id="services-heading">Services Built for Your Business</h2>
-      <p>From your first website to a custom web application, we provide practical technology solutions at every stage of your growth.</p>
+      <h2 id="services-heading">Focused Services for Operational Growth</h2>
+      <p>From replacing manual spreadsheets to building a content-managed business system, BPSquare focuses on tools that make daily work clearer and easier to manage.</p>
     </div>
 
     @if (servicesLoading()) {
@@ -85,7 +85,7 @@
           <bps-service-card [service]="service" />
         }
       </div>
-      <div class="services-cta text-center">
+      <div class="services-cta">
         <a routerLink="/services" class="btn-outline">See All Services</a>
       </div>
     }
@@ -114,8 +114,33 @@
   </div>
 </section>
 
+<!-- ===== FOUNDER LED ===== -->
+<section class="section bg-surface" aria-labelledby="founder-heading">
+  <div class="container founder-led">
+    <div class="founder-led__content">
+      <span class="eyebrow">Founder-Led Delivery</span>
+      <h2 id="founder-heading">Small, Focused, and Built With Engineering Care</h2>
+      <p>
+        BPSquare is in its first year of service, which means every project gets direct
+        attention from the engineer responsible for understanding the problem, shaping
+        the solution, and building the system. The focus is not volume. It is clear scope,
+        useful software, and steady communication.
+      </p>
+    </div>
+    <div class="founder-led__grid" aria-label="Delivery principles">
+      @for (item of deliveryPrinciples; track item.heading) {
+        <article class="founder-led__item">
+          <mat-icon aria-hidden="true">{{ item.icon }}</mat-icon>
+          <h3>{{ item.heading }}</h3>
+          <p>{{ item.body }}</p>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
 <!-- ===== PROCESS PREVIEW ===== -->
-<section class="section bg-surface" aria-labelledby="process-heading">
+<section class="section" aria-labelledby="process-heading">
   <div class="container">
     <div class="section-heading">
       <span class="eyebrow">How We Work</span>
@@ -134,7 +159,7 @@
         </li>
       }
     </ol>
-    <div class="text-center" style="margin-top: 3rem">
+    <div class="process-cta">
       <a routerLink="/process" class="btn-outline">Learn About Our Process</a>
     </div>
   </div>

@@ -11,6 +11,13 @@ import { CtaSectionComponent } from '../../shared/components/cta-section/cta-sec
 import { PageHeroComponent } from '../../shared/components/page-hero/page-hero.component';
 import { Service } from '../../core/models/service.model';
 
+interface FocusService {
+  icon: string;
+  title: string;
+  summary: string;
+  details: string[];
+}
+
 @Component({
   selector: 'bps-services',
   standalone: true,
@@ -26,10 +33,43 @@ export class ServicesComponent implements OnInit {
   loading  = signal(true);
   error    = signal(false);
 
+  readonly focusServices: FocusService[] = [
+    {
+      icon: 'code',
+      title: 'Custom Web Apps for Service Businesses',
+      summary: 'Client portals, intake systems, dashboards, and business-specific tools that support the way your team works.',
+      details: ['Role-based workflows', 'Admin dashboards', 'Forms, requests, and status tracking', 'REST API and database integration'],
+    },
+    {
+      icon: 'schema',
+      title: 'Internal Tools & Workflow Automation',
+      summary: 'Practical systems that reduce spreadsheet work, repeated emails, and manual handoffs between people or platforms.',
+      details: ['Workflow mapping', 'Form and notification automation', 'Reporting views', 'Data movement between tools'],
+    },
+    {
+      icon: 'trending_up',
+      title: 'Small Business Operations Modernization',
+      summary: 'A phased path from informal manual processes to clearer, trackable digital operations.',
+      details: ['Current-state review', 'Process redesign', 'Phased implementation plans', 'Training-friendly handoff'],
+    },
+    {
+      icon: 'integration_instructions',
+      title: 'WordPress + Angular & Business Systems Integration',
+      summary: 'Headless WordPress, Angular frontends, and custom REST endpoints for content-managed business experiences.',
+      details: ['Custom post types', 'Angular frontends', 'WordPress REST API', 'Business system integrations'],
+    },
+    {
+      icon: 'dashboard_customize',
+      title: 'Custom WordPress Theme Development',
+      summary: 'Lightweight, business-specific WordPress themes and admin experiences built for clarity, speed, and maintainability.',
+      details: ['Custom themes', 'Admin settings', 'Reusable templates', 'SEO and performance foundations'],
+    },
+  ];
+
   ngOnInit(): void {
     this.seo.set({
-      title: 'Services',
-      description: 'BPSquare LLC offers website development, custom web application development, UI/UX design, business process automation, technical consulting, and ongoing maintenance & support.',
+      title: 'Custom Web Apps, Internal Tools & WordPress Systems',
+      description: 'BPSquare LLC builds custom web apps, internal tools, workflow automation, WordPress themes, and Angular business systems for service-based small businesses.',
       canonicalUrl: 'https://bpsquarellc.com/services',
     });
     this.load();

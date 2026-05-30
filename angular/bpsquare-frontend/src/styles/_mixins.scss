@@ -227,7 +227,7 @@
 // ---------------------------------------------------------------------------
 
 @mixin section-heading {
-  text-align: center;
+  text-align: left;
   margin-bottom: $space-12;
 
   .eyebrow {
@@ -250,6 +250,6 @@
     @include body-lg;
     color: $text-secondary;
     max-width: 600px;
-    margin-inline: auto;
+    margin-inline: 0;
   }
 }

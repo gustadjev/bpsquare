@@ -24,16 +24,16 @@ export class AboutComponent implements OnInit {
   readonly values: Value[] = [
     { icon: 'handshake', title: 'Honest Communication', description: 'We tell you what you need to hear, not what you want to hear. Transparent timelines, realistic estimates, and plain-language updates.' },
     { icon: 'verified', title: 'Quality Over Shortcuts', description: 'We build things right the first time. Clean code, tested solutions, and well-organized systems you can maintain and grow.' },
-    { icon: 'diversity_3', title: 'Community Commitment', description: 'We are intentional about supporting small, minority-owned, and community-focused businesses with the same expertise larger companies receive.' },
+    { icon: 'diversity_3', title: 'Service Business Focus', description: 'We are intentional about helping small, minority-owned, and community-focused service businesses improve the way work gets done.' },
     { icon: 'settings', title: 'Practical Solutions', description: 'Technology should solve problems and enable growth. We recommend what fits your situation — not the most complex or expensive option.' },
-    { icon: 'people', title: 'Long-Term Partnership', description: 'Our relationship doesn\'t end at launch. We want to be your go-to technology partner as your business grows.' },
+    { icon: 'route', title: 'Phased Progress', description: 'Early projects can start small, prove the workflow, and grow into a stronger system over time.' },
     { icon: 'school', title: 'Client Education', description: 'We help you understand what we built and why, so you feel confident managing and evolving your digital presence.' },
   ];
 
   ngOnInit(): void {
     this.seo.set({
-      title: 'About Us',
-      description: 'BPSquare LLC is an IT consulting and software development company dedicated to helping small businesses, minority-owned businesses, and growing organizations build reliable digital solutions.',
+      title: 'About BPSquare LLC',
+      description: 'BPSquare LLC is a first-year, founder-led full-stack studio building custom web apps, workflow automation, WordPress systems, and Angular integrations for service-based small businesses.',
       canonicalUrl: 'https://bpsquarellc.com/about',
     });
   }

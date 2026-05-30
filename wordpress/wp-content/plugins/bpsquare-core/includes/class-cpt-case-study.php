@@ -26,11 +26,11 @@ class CPT_Case_Study {
 	public function register_post_type(): void {
 		register_post_type( self::POST_TYPE, [
 			'labels'          => [
-				'name'          => __( 'Case Studies', 'bpsquare-core' ),
-				'singular_name' => __( 'Case Study', 'bpsquare-core' ),
-				'add_new_item'  => __( 'Add New Case Study', 'bpsquare-core' ),
-				'edit_item'     => __( 'Edit Case Study', 'bpsquare-core' ),
-				'all_items'     => __( 'All Case Studies', 'bpsquare-core' ),
+				'name'          => __( 'Project Lab', 'bpsquare-core' ),
+				'singular_name' => __( 'Project Lab Entry', 'bpsquare-core' ),
+				'add_new_item'  => __( 'Add New Project Lab Entry', 'bpsquare-core' ),
+				'edit_item'     => __( 'Edit Project Lab Entry', 'bpsquare-core' ),
+				'all_items'     => __( 'All Project Lab Entries', 'bpsquare-core' ),
 			],
 			'public'          => false,
 			'show_ui'         => true,
@@ -60,10 +60,15 @@ class CPT_Case_Study {
 		wp_nonce_field( 'bps_cs_save', 'bps_cs_nonce' );
 
 		$fields = [
-			'_bps_cs_problem'      => __( 'Problem', 'bpsquare-core' ),
-			'_bps_cs_solution'     => __( 'Solution', 'bpsquare-core' ),
-			'_bps_cs_technologies' => __( 'Technologies (comma-separated)', 'bpsquare-core' ),
-			'_bps_cs_outcome'      => __( 'Outcome', 'bpsquare-core' ),
+			'_bps_cs_status'         => __( 'Project Status', 'bpsquare-core' ),
+			'_bps_cs_client_type'    => __( 'Client Type', 'bpsquare-core' ),
+			'_bps_cs_problem'        => __( 'Problem', 'bpsquare-core' ),
+			'_bps_cs_constraints'    => __( 'Constraints', 'bpsquare-core' ),
+			'_bps_cs_solution'       => __( 'Solution', 'bpsquare-core' ),
+			'_bps_cs_technologies'   => __( 'Tools Used (comma-separated)', 'bpsquare-core' ),
+			'_bps_cs_outcome'        => __( 'Outcome', 'bpsquare-core' ),
+			'_bps_cs_lessons'        => __( 'Lessons Learned', 'bpsquare-core' ),
+			'_bps_cs_is_confidential'=> __( 'Confidential?', 'bpsquare-core' ),
 		];
 		?>
 		<table class="form-table">
@@ -73,7 +78,22 @@ class CPT_Case_Study {
 			?>
 			<tr>
 				<th><label for="<?php echo esc_attr( $id ); ?>"><?php echo esc_html( $label ); ?></label></th>
-				<td><textarea id="<?php echo esc_attr( $id ); ?>" name="<?php echo esc_attr( $id ); ?>" rows="4" style="width:100%"><?php echo esc_textarea( $value ); ?></textarea></td>
+				<td>
+					<?php if ( '_bps_cs_status' === $meta_key ) : ?>
+						<select id="<?php echo esc_attr( $id ); ?>" name="<?php echo esc_attr( $id ); ?>" style="width:100%">
+							<?php foreach ( $this->get_status_options() as $status_key => $status_label ) : ?>
+								<option value="<?php echo esc_attr( $status_key ); ?>" <?php selected( $value ?: 'concept', $status_key ); ?>><?php echo esc_html( $status_label ); ?></option>
+							<?php endforeach; ?>
+						</select>
+					<?php elseif ( '_bps_cs_is_confidential' === $meta_key ) : ?>
+						<label>
+							<input type="checkbox" id="<?php echo esc_attr( $id ); ?>" name="<?php echo esc_attr( $id ); ?>" value="1" <?php checked( '1', $value ); ?>>
+							<?php esc_html_e( 'Keep client details general or anonymized.', 'bpsquare-core' ); ?>
+						</label>
+					<?php else : ?>
+						<textarea id="<?php echo esc_attr( $id ); ?>" name="<?php echo esc_attr( $id ); ?>" rows="4" style="width:100%"><?php echo esc_textarea( $value ); ?></textarea>
+					<?php endif; ?>
+				</td>
 			</tr>
 		<?php endforeach; ?>
 		</table>
@@ -89,30 +109,62 @@ class CPT_Case_Study {
 			return;
 		}
 
-		$fields = [ 'bps_cs_problem', 'bps_cs_solution', 'bps_cs_technologies', 'bps_cs_outcome' ];
+		$fields = [
+			'bps_cs_status',
+			'bps_cs_client_type',
+			'bps_cs_problem',
+			'bps_cs_constraints',
+			'bps_cs_solution',
+			'bps_cs_technologies',
+			'bps_cs_outcome',
+			'bps_cs_lessons',
+		];
 		foreach ( $fields as $field ) {
 			if ( isset( $_POST[ $field ] ) ) {
 				update_post_meta( $post_id, '_' . $field, sanitize_textarea_field( wp_unslash( $_POST[ $field ] ) ) );
 			}
 		}
+		update_post_meta( $post_id, '_bps_cs_is_confidential', isset( $_POST['bps_cs_is_confidential'] ) ? '1' : '0' );
 	}
 
 	public function register_rest_fields(): void {
 		$meta_map = [
-			'problem'      => '_bps_cs_problem',
-			'solution'     => '_bps_cs_solution',
-			'technologies' => '_bps_cs_technologies',
-			'outcome'      => '_bps_cs_outcome',
+			'status'         => '_bps_cs_status',
+			'clientType'     => '_bps_cs_client_type',
+			'problem'        => '_bps_cs_problem',
+			'constraints'    => '_bps_cs_constraints',
+			'solution'       => '_bps_cs_solution',
+			'technologies'   => '_bps_cs_technologies',
+			'outcome'        => '_bps_cs_outcome',
+			'lessonsLearned' => '_bps_cs_lessons',
+			'isConfidential' => '_bps_cs_is_confidential',
 		];
 
 		foreach ( $meta_map as $rest_field => $meta_key ) {
 			$key = $meta_key;
 			register_rest_field( self::POST_TYPE, $rest_field, [
-				'get_callback' => function ( array $post ) use ( $key ): string {
+				'get_callback' => function ( array $post ) use ( $key ) {
+					if ( '_bps_cs_is_confidential' === $key ) {
+						return '1' === (string) get_post_meta( $post['id'], $key, true );
+					}
 					return (string) get_post_meta( $post['id'], $key, true );
 				},
-				'schema' => [ 'type' => 'string' ],
+				'schema' => [ 'type' => '_bps_cs_is_confidential' === $key ? 'boolean' : 'string' ],
 			] );
 		}
+	}
+
+	/**
+	 * Project status options used by the admin UI and public API.
+	 *
+	 * @return array<string, string>
+	 */
+	private function get_status_options(): array {
+		return [
+			'concept'     => __( 'Concept', 'bpsquare-core' ),
+			'volunteer'   => __( 'Volunteer', 'bpsquare-core' ),
+			'in_progress' => __( 'In Progress', 'bpsquare-core' ),
+			'completed'   => __( 'Completed', 'bpsquare-core' ),
+		];
 	}
 }

@@ -90,13 +90,18 @@ class REST_Content_Controller extends \WP_REST_Controller {
 			$techs     = array_filter( array_map( 'trim', explode( ',', $techs_raw ) ) );
 
 			return [
-				'id'           => $post->ID,
-				'title'        => wp_strip_all_tags( $post->post_title ),
-				'problem'      => (string) get_post_meta( $post->ID, '_bps_cs_problem', true ),
-				'solution'     => (string) get_post_meta( $post->ID, '_bps_cs_solution', true ),
-				'technologies' => array_values( $techs ),
-				'outcome'      => (string) get_post_meta( $post->ID, '_bps_cs_outcome', true ),
-				'thumbnail'    => get_the_post_thumbnail_url( $post->ID, 'medium' ) ?: null,
+				'id'             => $post->ID,
+				'title'          => wp_strip_all_tags( $post->post_title ),
+				'status'         => (string) get_post_meta( $post->ID, '_bps_cs_status', true ) ?: 'concept',
+				'clientType'     => (string) get_post_meta( $post->ID, '_bps_cs_client_type', true ),
+				'problem'        => (string) get_post_meta( $post->ID, '_bps_cs_problem', true ),
+				'constraints'    => (string) get_post_meta( $post->ID, '_bps_cs_constraints', true ),
+				'solution'       => (string) get_post_meta( $post->ID, '_bps_cs_solution', true ),
+				'technologies'   => array_values( $techs ),
+				'outcome'        => (string) get_post_meta( $post->ID, '_bps_cs_outcome', true ),
+				'lessonsLearned' => (string) get_post_meta( $post->ID, '_bps_cs_lessons', true ),
+				'isConfidential' => '1' === (string) get_post_meta( $post->ID, '_bps_cs_is_confidential', true ),
+				'thumbnail'      => get_the_post_thumbnail_url( $post->ID, 'medium' ) ?: null,
 			];
 		}, $posts );
 

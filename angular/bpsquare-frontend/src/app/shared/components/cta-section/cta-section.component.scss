@@ -4,11 +4,10 @@
 .cta-section {
   @include section-padding;
   background: linear-gradient(135deg, $brand-primary-dark 0%, $brand-dark-mid 100%);
-  text-align: center;
+  text-align: left;
 
   &__inner {
     max-width: 680px;
-    margin-inline: auto;
   }
 
   &__headline {
@@ -27,6 +26,6 @@
     display: flex;
     flex-wrap: wrap;
     gap: $space-4;
-    justify-content: center;
+    justify-content: flex-start;
   }
 }

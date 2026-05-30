@@ -32,10 +32,14 @@ class Validation_Service {
 		$this->required_string( $data, 'lastName', 'Last name', 2, 80 );
 		$this->required_email( $data, 'email' );
 		$this->optional_string( $data, 'businessName', 'Business name', 0, 120 );
+		$this->optional_string( $data, 'businessType', 'Business type', 0, 120 );
+		$this->optional_url( $data, 'currentWebsite', 'Current website' );
 		$this->optional_phone( $data, 'phone' );
 		$this->required_string( $data, 'serviceInterest', 'Service interest', 2, 120 );
 		$this->optional_string( $data, 'budgetRange', 'Budget range', 0, 80 );
 		$this->optional_string( $data, 'preferredTimeline', 'Preferred timeline', 0, 80 );
+		$this->optional_string( $data, 'phasedApproach', 'Phased approach', 0, 120 );
+		$this->optional_string( $data, 'operationalProblem', 'Operational problem', 0, 2000 );
 		$this->required_string( $data, 'projectDescription', 'Project description', 10, 5000 );
 		$this->required_consent( $data );
 
@@ -109,6 +113,19 @@ class Validation_Service {
 		// Allow digits, spaces, dashes, dots, parens, and plus sign (E.164 compatible).
 		if ( ! preg_match( '/^[0-9\s\+\-\.\(\)]{7,20}$/', $value ) ) {
 			$this->errors[ $field ][] = 'Please enter a valid phone number.';
+		}
+	}
+
+	private function optional_url( array $data, string $field, string $label ): void {
+		if ( empty( $data[ $field ] ) ) {
+			return;
+		}
+		$value = trim( (string) $data[ $field ] );
+		if ( mb_strlen( $value ) > 200 ) {
+			$this->errors[ $field ][] = "{$label} must be no more than 200 characters.";
+		}
+		if ( ! filter_var( $value, FILTER_VALIDATE_URL ) || ! preg_match( '/^https?:\/\//i', $value ) ) {
+			$this->errors[ $field ][] = "{$label} must be a valid http or https URL.";
 		}
 	}
 

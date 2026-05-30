@@ -128,45 +128,45 @@ final class Plugin {
 
 		$services = [
 			[
-				'title'   => 'Website Development',
-				'summary' => 'Professional websites for small businesses, service providers, community organizations, and entrepreneurs.',
-				'details' => "Responsive design\nSEO-ready structure\nContact forms\nService pages\nContent organization\nPerformance optimization",
-				'icon'    => 'web',
+				'title'   => 'Custom Web Apps for Service Businesses',
+				'summary' => 'Client portals, intake systems, dashboards, and business-specific applications for service-based small businesses.',
+				'details' => "Role-based workflows\nAdmin dashboards\nForms, requests, and status tracking\nREST API and database integration\nMaintainable first-release scope",
+				'icon'    => 'code',
 				'order'   => 1,
 			],
 			[
-				'title'   => 'Custom Web Application Development',
-				'summary' => 'Custom business applications built to improve workflows, reduce manual work, and support business operations.',
-				'details' => "Admin dashboards\nInternal tools\nData-driven applications\nRole-based access\nAPI integrations",
-				'icon'    => 'code',
+				'title'   => 'Internal Tools & Workflow Automation',
+				'summary' => 'Practical systems that reduce spreadsheet work, repeated emails, manual handoffs, and disconnected processes.',
+				'details' => "Workflow mapping\nForm and notification automation\nInternal dashboards\nReporting views\nData movement between tools",
+				'icon'    => 'schema',
 				'order'   => 2,
 			],
 			[
-				'title'   => 'UI/UX Design & Prototyping',
-				'summary' => 'Design support before development to reduce confusion and improve user experience.',
-				'details' => "Discovery sessions\nWireframes\nLow-fidelity prototypes\nHigh-fidelity prototypes\nFigma-ready design concepts",
-				'icon'    => 'design_services',
+				'title'   => 'Small Business Operations Modernization',
+				'summary' => 'A phased path from informal manual processes to clearer, trackable digital operations.',
+				'details' => "Current-state review\nRequirements gathering\nProcess redesign\nPhased implementation plans\nTraining-friendly handoff",
+				'icon'    => 'trending_up',
 				'order'   => 3,
 			],
 			[
-				'title'   => 'Business Process Automation',
-				'summary' => 'Help businesses simplify repetitive processes and improve efficiency.',
-				'details' => "Workflow analysis\nForm automation\nData movement\nReporting support\nIntegration planning",
-				'icon'    => 'auto_awesome',
+				'title'   => 'WordPress + Angular Integration',
+				'summary' => 'Headless WordPress, Angular frontends, and custom REST endpoints for content-managed business experiences.',
+				'details' => "Custom post types\nAngular frontends\nWordPress REST API\nAdmin-friendly content management\nBusiness system integrations",
+				'icon'    => 'integration_instructions',
 				'order'   => 4,
 			],
 			[
-				'title'   => 'Technical Consulting',
-				'summary' => 'Guidance for businesses that need help making technology decisions.',
-				'details' => "Project scoping\nRequirements gathering\nSystem recommendations\nVendor/platform evaluation\nTechnical documentation",
-				'icon'    => 'support_agent',
+				'title'   => 'Custom WordPress Theme Development',
+				'summary' => 'Lightweight, business-specific WordPress themes and admin experiences built for clarity, speed, and maintainability.',
+				'details' => "Custom themes\nAdmin settings\nReusable templates\nSEO and performance foundations\nPlugin-aware implementation",
+				'icon'    => 'dashboard_customize',
 				'order'   => 5,
 			],
 			[
-				'title'   => 'Website Maintenance & Support',
-				'summary' => 'Ongoing website and application support after launch.',
-				'details' => "Updates\nBug fixes\nContent changes\nPerformance reviews\nSecurity patch coordination",
-				'icon'    => 'build',
+				'title'   => 'Project Scoping & Technical Consulting',
+				'summary' => 'Guidance for early-stage technology decisions, requirements, and realistic first-release planning.',
+				'details' => "Discovery sessions\nRequirements analysis\nArchitecture recommendations\nVendor/platform evaluation\nTechnical documentation",
+				'icon'    => 'support_agent',
 				'order'   => 6,
 			],
 		];
@@ -188,25 +188,40 @@ final class Plugin {
 
 		$case_studies = [
 			[
-				'title'        => 'Small Business Website Redesign',
-				'problem'      => 'A local service-based business had an outdated website that was not mobile-friendly and generated no leads.',
-				'solution'     => 'BPSquare LLC designed and built a modern, responsive WordPress website with a clear service overview, contact form, and local SEO structure.',
-				'technologies' => 'WordPress, PHP, SCSS, Custom Theme',
-				'outcome'      => 'The client saw a 40% increase in contact form submissions within the first 60 days of launch.',
+				'title'        => 'Service Business Intake Workflow',
+				'status'       => 'concept',
+				'client_type'  => 'Service-based small business',
+				'problem'      => 'A service business receives requests through calls, emails, and forms, making follow-up inconsistent and hard to track.',
+				'constraints'  => 'The first release needs to be affordable, easy to manage, and useful without forcing the team to change every process at once.',
+				'solution'     => 'BPSquare LLC scopes a centralized intake flow with structured forms, status tracking, admin review, and email notifications.',
+				'technologies' => 'Angular, WordPress REST API, PHP, MySQL',
+				'outcome'      => 'Early project pattern: reduce manual triage and make every request easier to see, assign, and follow up.',
+				'lessons'      => 'Start with the smallest workflow that creates visibility, then expand after the team proves the process.',
+				'confidential' => '1',
 			],
 			[
-				'title'        => 'Internal Business Workflow Tool',
-				'problem'      => 'A small business was tracking customer orders in spreadsheets, leading to errors and delays.',
-				'solution'     => 'BPSquare LLC built a custom web application with an admin dashboard, order tracking, and status notifications.',
-				'technologies' => 'Angular, Node.js, MySQL, REST API',
-				'outcome'      => 'Manual data entry time was reduced by over 60%, and the team reported fewer errors and faster order processing.',
+				'title'        => 'Internal Operations Dashboard',
+				'status'       => 'in_progress',
+				'client_type'  => 'Small operations team',
+				'problem'      => 'A small team manages work from spreadsheets and messages, leaving no single view of active tasks, clients, or next steps.',
+				'constraints'  => 'The dashboard must support existing habits while gradually replacing fragile manual tracking.',
+				'solution'     => 'BPSquare LLC designs a lightweight internal dashboard that starts with the most important workflow and can expand in phases.',
+				'technologies' => 'Angular, REST API, MySQL, Role-Based Access',
+				'outcome'      => 'Early project pattern: create visibility before adding complexity.',
+				'lessons'      => 'A useful internal tool is often less about adding features and more about making the next action obvious.',
+				'confidential' => '1',
 			],
 			[
-				'title'        => 'Service-Based Business Landing Page',
-				'problem'      => 'A professional consultant had no online presence and was relying entirely on word-of-mouth referrals.',
-				'solution'     => 'BPSquare LLC created a focused landing page highlighting services, credentials, and a consultation booking call-to-action.',
-				'technologies' => 'WordPress, Custom Theme, Contact Form 7',
-				'outcome'      => 'The consultant began receiving consistent online inquiries within weeks of launch.',
+				'title'        => 'Custom WordPress Business System',
+				'status'       => 'volunteer',
+				'client_type'  => 'Community-focused business',
+				'problem'      => 'A business needs a content-managed website, but also needs structured services, inquiries, FAQs, and business-specific admin screens.',
+				'constraints'  => 'The owner needs familiar content editing without giving up frontend control or custom business logic.',
+				'solution'     => 'BPSquare LLC builds a custom WordPress theme and plugin foundation with custom post types, REST endpoints, and a modern frontend.',
+				'technologies' => 'WordPress, PHP, Custom Theme, Angular, SCSS',
+				'outcome'      => 'Early project pattern: use WordPress as a manageable business backend, not just a page builder.',
+				'lessons'      => 'WordPress works best for custom business sites when the admin model is designed around the real content and workflow.',
+				'confidential' => '0',
 			],
 		];
 
@@ -218,9 +233,14 @@ final class Plugin {
 			] );
 			if ( ! is_wp_error( $post_id ) ) {
 				update_post_meta( $post_id, '_bps_cs_problem', sanitize_textarea_field( $cs['problem'] ) );
+				update_post_meta( $post_id, '_bps_cs_status', sanitize_key( $cs['status'] ) );
+				update_post_meta( $post_id, '_bps_cs_client_type', sanitize_text_field( $cs['client_type'] ) );
+				update_post_meta( $post_id, '_bps_cs_constraints', sanitize_textarea_field( $cs['constraints'] ) );
 				update_post_meta( $post_id, '_bps_cs_solution', sanitize_textarea_field( $cs['solution'] ) );
 				update_post_meta( $post_id, '_bps_cs_technologies', sanitize_text_field( $cs['technologies'] ) );
 				update_post_meta( $post_id, '_bps_cs_outcome', sanitize_textarea_field( $cs['outcome'] ) );
+				update_post_meta( $post_id, '_bps_cs_lessons', sanitize_textarea_field( $cs['lessons'] ) );
+				update_post_meta( $post_id, '_bps_cs_is_confidential', sanitize_text_field( $cs['confidential'] ) );
 			}
 		}
 
